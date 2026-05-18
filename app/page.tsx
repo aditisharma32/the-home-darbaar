@@ -8,7 +8,6 @@ import StorySection from "./components/StorySection";
 import CollectionsSection from "./components/CollectionsSection";
 import SpotlightSection from "./components/SpotlightSection";
 import CinematicQuote from "./components/CinematicQuote";
-import ArtisanShowcase from "./components/ArtisanShowcase";
 import ShowroomSection from "./components/ShowroomSection";
 import Footer from "./components/Footer";
 import InquiryDrawer from "./components/InquiryDrawer";
@@ -42,10 +41,9 @@ export default function Home() {
         <HeroSection />
         <MarqueeSection />
         <StorySection />
+        <CinematicQuote />
         <CollectionsSection />
         <SpotlightSection onSelectProduct={handleOpenDrawer} />
-        <CinematicQuote />
-        <ArtisanShowcase />
         <ShowroomSection />
       </main>
 

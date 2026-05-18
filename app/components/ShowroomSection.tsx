@@ -1,23 +1,42 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Sparkles, MapPin, PhoneCall, Mail, ArrowRight } from "lucide-react";
+import React, { useState, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { Sparkles, MapPin, PhoneCall, ArrowRight } from "lucide-react";
 
-const scrollRevealVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.8, ease: [0.32, 0.72, 0, 1] as const }
-  }
-};
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function ShowroomSection() {
+  const containerRef = useRef<HTMLElement>(null);
   const [showroomName, setShowroomName] = useState("");
   const [showroomEmail, setShowroomEmail] = useState("");
   const [showroomMsg, setShowroomMsg] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
+
+  useGSAP(() => {
+    if (!containerRef.current) return;
+    
+    // Reveal text and form with a beautiful stagger
+    gsap.fromTo(
+      ".reveal-item",
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        stagger: 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 70%",
+        }
+      }
+    );
+  }, { scope: containerRef });
 
   const handleShowroomSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,144 +50,160 @@ export default function ShowroomSection() {
   };
 
   return (
-    <motion.section 
+    <section 
+      ref={containerRef}
       id="showroom" 
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      variants={scrollRevealVariants}
-      className="py-32 md:py-48 bg-brand-dark text-brand-ivory relative border-t border-brand-brass/20"
+      className="py-32 md:py-48 bg-[#FAF6F0] text-brand-charcoal relative overflow-hidden"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(197,168,128,0.05)_0%,transparent_70%)] pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-6 md:px-16 grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10">
+      <div className="w-full max-w-[1400px] mx-auto px-6 md:px-16 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative z-10">
         
-        {/* Showroom info */}
-        <div className="lg:col-span-5 flex flex-col justify-between">
+        {/* Left Column: Showroom Info & Typography */}
+        <div className="lg:col-span-5 flex flex-col justify-between pt-4">
           <div>
-            <span className="text-xs uppercase tracking-widest text-brand-brass font-bold block mb-3">
+            <span className="reveal-item flex items-center gap-3 text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-brand-brass font-bold mb-8">
+              <Sparkles className="w-3.5 h-3.5" />
               Visit The Boutique
             </span>
-            <h2 className="font-serif text-4xl md:text-6xl font-bold leading-tight text-white">
-              The Jaipur Showroom
+            <h2 className="reveal-item font-serif text-[3.5rem] leading-[0.95] md:text-[5rem] font-light tracking-tight text-brand-charcoal">
+              The Jaipur
+              <br />
+              <span className="italic text-brand-charcoal/80 flex items-center gap-4 mt-2">
+                Showroom
+                <span 
+                  className="hidden md:inline-block w-20 h-10 rounded-full bg-cover bg-center border border-brand-charcoal/20 -translate-y-1 opacity-90" 
+                  style={{ backgroundImage: `url('/images/hero-door-image.jpg')` }}
+                />
+              </span>
             </h2>
-            <p className="text-sm text-white/60 mt-6 leading-relaxed max-w-[42ch]">
-              Walk through our physical sanctuary in the Pink City to experience the weight, scale, acoustics, and reflections of our decor pieces.
+            <p className="reveal-item text-sm text-brand-charcoal/60 mt-10 leading-relaxed max-w-[42ch] font-sans">
+              Walk through our physical sanctuary in the Pink City. Experience the weight, scale, acoustics, and reflections of our curated pieces in absolute silence.
             </p>
           </div>
 
-          <div className="space-y-6 mt-12 lg:mt-24 border-t border-white/10 pt-8">
-            <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-full bg-white/5 text-brand-brass flex items-center justify-center shrink-0 border border-white/10">
+          <div className="space-y-8 mt-16 lg:mt-24 border-t border-brand-charcoal/10 pt-10">
+            <div className="reveal-item flex gap-5 group">
+              <div className="w-10 h-10 rounded-full border border-brand-charcoal/20 flex items-center justify-center shrink-0 text-brand-charcoal group-hover:bg-brand-charcoal group-hover:text-brand-ivory transition-colors duration-500">
                 <MapPin className="w-4 h-4" />
               </div>
-              <div>
-                <span className="text-[10px] uppercase tracking-widest text-white/50 font-bold block">Physical Address</span>
-                <span className="text-sm font-semibold text-white block mt-1">
-                  Showrooms 14-16, Heritage Arcade, M.I. Road, Jaipur, Rajasthan, 302001
+              <div className="pt-1">
+                <span className="text-[9px] uppercase tracking-[0.2em] text-brand-charcoal/50 font-bold block mb-1.5">Physical Address</span>
+                <span className="text-sm font-medium text-brand-charcoal block leading-snug">
+                  Showrooms 14-16, Heritage Arcade,<br />M.I. Road, Jaipur, Rajasthan, 302001
                 </span>
               </div>
             </div>
 
-            <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-full bg-white/5 text-brand-brass flex items-center justify-center shrink-0 border border-white/10">
+            <div className="reveal-item flex gap-5 group">
+              <div className="w-10 h-10 rounded-full border border-brand-charcoal/20 flex items-center justify-center shrink-0 text-brand-charcoal group-hover:bg-brand-charcoal group-hover:text-brand-ivory transition-colors duration-500">
                 <PhoneCall className="w-4 h-4" />
               </div>
-              <div>
-                <span className="text-[10px] uppercase tracking-widest text-white/50 font-bold block">WhatsApp & Showroom Hotline</span>
-                <span className="text-sm font-semibold text-white block mt-1">
-                  +91 98765 43210 (Curator Hotline)
-                </span>
-              </div>
-            </div>
-
-            <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-full bg-white/5 text-brand-brass flex items-center justify-center shrink-0 border border-white/10">
-                <Mail className="w-4 h-4" />
-              </div>
-              <div>
-                <span className="text-[10px] uppercase tracking-widest text-white/50 font-bold block">Inquiries Email</span>
-                <span className="text-sm font-semibold text-white block mt-1">
-                  curate@thehomedarbaar.com
+              <div className="pt-1">
+                <span className="text-[9px] uppercase tracking-[0.2em] text-brand-charcoal/50 font-bold block mb-1.5">Curator Hotline</span>
+                <span className="text-sm font-medium text-brand-charcoal block">
+                  +91 98765 43210
                 </span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Showroom Inquiry Form */}
-        <div className="lg:col-span-7 bg-[#141312] p-8 md:p-12 rounded-[2.5rem] border border-brand-brass/20 shadow-2xl relative">
-          <div className="absolute inset-2 border border-brand-brass/10 rounded-[2.1rem] pointer-events-none" />
-          <h3 className="font-serif text-3xl font-semibold text-white mb-2">Arrange Showroom Viewing</h3>
-          <p className="text-xs text-white/50 mb-8">
-            Establish contact with our curator to set up a private, guided viewing or request a catalog dispatch.
-          </p>
+        {/* Right Column: High-End Minimalist Form */}
+        <div className="lg:col-span-7 reveal-item">
+          <div className="bg-white p-10 md:p-16 rounded-[2px] shadow-[0_30px_60px_rgba(0,0,0,0.04)] border border-brand-charcoal/5 relative h-full flex flex-col justify-center">
+            
+            <h3 className="font-serif text-3xl md:text-4xl font-medium text-brand-charcoal mb-4">Arrange Viewing</h3>
+            <p className="text-sm text-brand-charcoal/50 mb-12 max-w-[45ch] leading-relaxed">
+              Establish contact with our curator to set up a private, guided viewing or request a specialized catalog dispatch.
+            </p>
 
-          {formSubmitted ? (
-            <motion.div 
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="py-12 text-center flex flex-col items-center justify-center"
-            >
-              <div className="w-16 h-16 bg-brand-brass/10 text-brand-brass rounded-full flex items-center justify-center mb-6">
-                <Sparkles className="w-8 h-8" />
-              </div>
-              <h4 className="font-serif text-xl font-semibold text-white">Namaste & Thank You</h4>
-              <p className="text-xs text-white/50 max-w-[32ch] leading-relaxed mt-2">
-                Your viewing request was compiled. Our Jaipur concierge will establish connection with you shortly.
-              </p>
-            </motion.div>
-          ) : (
-            <form onSubmit={handleShowroomSubmit} className="space-y-6 relative z-10">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="flex flex-col gap-2">
-                  <label className="text-[10px] uppercase tracking-wider text-white/50 font-bold">Your Name</label>
-                  <input 
-                    type="text" 
-                    required
-                    value={showroomName}
-                    onChange={(e) => setShowroomName(e.target.value)}
-                    placeholder="e.g. Vikramaditya" 
-                    className="w-full bg-[#1A1817] border border-brand-brass/20 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-brand-brass focus:ring-1 focus:ring-brand-brass transition-all font-sans"
-                  />
+            {formSubmitted ? (
+              <div className="py-20 text-center flex flex-col items-center justify-center animate-in fade-in duration-1000">
+                <div className="w-16 h-16 bg-[#FAF6F0] text-brand-brass rounded-full flex items-center justify-center mb-6">
+                  <Sparkles className="w-6 h-6" />
                 </div>
-                <div className="flex flex-col gap-2">
-                  <label className="text-[10px] uppercase tracking-wider text-white/50 font-bold">Email / Number</label>
-                  <input 
-                    type="text" 
-                    required
-                    value={showroomEmail}
-                    onChange={(e) => setShowroomEmail(e.target.value)}
-                    placeholder="e.g. contact@domain.com" 
-                    className="w-full bg-[#1A1817] border border-brand-brass/20 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-brand-brass focus:ring-1 focus:ring-brand-brass transition-all font-sans"
-                  />
+                <h4 className="font-serif text-2xl font-medium text-brand-charcoal">Namaste & Thank You</h4>
+                <p className="text-sm text-brand-charcoal/60 max-w-[32ch] leading-relaxed mt-4">
+                  Your viewing request was received. Our Jaipur concierge will establish connection with you shortly.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleShowroomSubmit} className="space-y-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <div className="relative group">
+                    <input 
+                      type="text" 
+                      required
+                      value={showroomName}
+                      onChange={(e) => setShowroomName(e.target.value)}
+                      id="name"
+                      className="peer w-full bg-transparent border-b border-brand-charcoal/20 px-0 py-3 text-base text-brand-charcoal placeholder-transparent focus:outline-none focus:border-brand-brass transition-colors rounded-none"
+                      placeholder="Name"
+                    />
+                    <label 
+                      htmlFor="name" 
+                      className="absolute left-0 -top-4 text-[9px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-brand-charcoal/30 peer-placeholder-shown:top-3 peer-placeholder-shown:uppercase-none peer-placeholder-shown:tracking-normal peer-placeholder-shown:font-normal peer-focus:-top-4 peer-focus:text-[9px] peer-focus:uppercase peer-focus:tracking-[0.2em] peer-focus:font-bold peer-focus:text-brand-brass cursor-text"
+                    >
+                      Your Name
+                    </label>
+                  </div>
+                  
+                  <div className="relative group">
+                    <input 
+                      type="text" 
+                      required
+                      value={showroomEmail}
+                      onChange={(e) => setShowroomEmail(e.target.value)}
+                      id="contact"
+                      className="peer w-full bg-transparent border-b border-brand-charcoal/20 px-0 py-3 text-base text-brand-charcoal placeholder-transparent focus:outline-none focus:border-brand-brass transition-colors rounded-none"
+                      placeholder="Contact"
+                    />
+                    <label 
+                      htmlFor="contact" 
+                      className="absolute left-0 -top-4 text-[9px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-brand-charcoal/30 peer-placeholder-shown:top-3 peer-placeholder-shown:uppercase-none peer-placeholder-shown:tracking-normal peer-placeholder-shown:font-normal peer-focus:-top-4 peer-focus:text-[9px] peer-focus:uppercase peer-focus:tracking-[0.2em] peer-focus:font-bold peer-focus:text-brand-brass cursor-text"
+                    >
+                      Email / Number
+                    </label>
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex flex-col gap-2">
-                <label className="text-[10px] uppercase tracking-wider text-white/50 font-bold">Acquisition Intent / Categories Interested</label>
-                <textarea 
-                  rows={4}
-                  required
-                  value={showroomMsg}
-                  onChange={(e) => setShowroomMsg(e.target.value)}
-                  placeholder="Describe your design space and the products you wish to acquire (e.g. Antique Chandeliers, Moving Clocks...)"
-                  className="w-full bg-[#1A1817] border border-brand-brass/20 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-brand-brass focus:ring-1 focus:ring-brand-brass transition-all font-sans leading-relaxed resize-none"
-                />
-              </div>
+                <div className="relative group">
+                  <textarea 
+                    required
+                    value={showroomMsg}
+                    onChange={(e) => setShowroomMsg(e.target.value)}
+                    id="intent"
+                    rows={1}
+                    className="peer w-full bg-transparent border-b border-brand-charcoal/20 px-0 py-3 text-base text-brand-charcoal placeholder-transparent focus:outline-none focus:border-brand-brass transition-colors rounded-none resize-none overflow-hidden min-h-[40px]"
+                    placeholder="Intent"
+                    onInput={(e) => {
+                      const target = e.target as HTMLTextAreaElement;
+                      target.style.height = 'auto';
+                      target.style.height = target.scrollHeight + 'px';
+                    }}
+                  />
+                  <label 
+                    htmlFor="intent" 
+                    className="absolute left-0 -top-4 text-[9px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-brand-charcoal/30 peer-placeholder-shown:top-3 peer-placeholder-shown:uppercase-none peer-placeholder-shown:tracking-normal peer-placeholder-shown:font-normal peer-focus:-top-4 peer-focus:text-[9px] peer-focus:uppercase peer-focus:tracking-[0.2em] peer-focus:font-bold peer-focus:text-brand-brass cursor-text"
+                  >
+                    Acquisition Intent
+                  </label>
+                </div>
 
-              <button 
-                type="submit"
-                className="w-full flex h-14 items-center justify-center gap-3 rounded-full bg-brand-brass hover:bg-brand-ivory text-brand-charcoal font-bold uppercase tracking-widest text-[10px] transition-all transform hover:scale-[1.01] active:scale-[0.98] cursor-pointer"
-              >
-                <span>Submit Heritage Request</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </form>
-          )}
+                <div className="pt-6">
+                  <button 
+                    type="submit"
+                    className="group w-full md:w-auto flex h-14 items-center justify-center gap-4 px-10 rounded-full bg-brand-charcoal text-brand-ivory font-bold uppercase tracking-[0.2em] text-[9px] transition-all duration-500 hover:bg-brand-brass hover:text-brand-charcoal"
+                  >
+                    <span>Submit Request</span>
+                    <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
         </div>
 
       </div>
-    </motion.section>
+    </section>
   );
 }
