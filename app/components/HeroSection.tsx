@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -37,10 +37,10 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
               style={{ z: 0 }}
-              className="flex items-center gap-3 text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-brand-charcoal/60 font-bold mb-4 md:mb-6 will-change-transform"
+              className="flex items-center gap-3 text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-brand-charcoal/60 font-bold mb-4 md:mb-6 will-change-transform"
             >
-              <Sparkles className="w-3.5 h-3.5 text-brand-brass" />
-              <span>Jaipur Heritage Showroom</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-brass" />
+              <span>Jagatpura, Jaipur</span>
               <div className="w-8 md:w-12 h-[1px] bg-brand-brass/40" />
             </motion.div>
 
@@ -68,7 +68,7 @@ export default function HeroSection() {
               style={{ z: 0 }}
               className="mt-4 md:mt-8 border-l-2 border-brand-brass/40 pl-4 md:pl-6 will-change-transform"
             >
-              <p className="text-xs md:text-base text-brand-charcoal/70 leading-relaxed max-w-[42ch] font-sans">
+              <p className="text-xs md:text-base text-brand-charcoal/70 leading-relaxed max-w-[55ch] font-sans">
                 Based in Jagatpura, Jaipur, we curate a premium collection of
                 handcrafted home accessories and lighting. Discover exquisite
                 statement pieces designed to bring timeless elegance and
@@ -86,14 +86,14 @@ export default function HeroSection() {
             >
               <a
                 href="#spotlight"
-                className="group flex h-12 md:h-14 items-center justify-center gap-3 md:gap-4 rounded-full bg-brand-charcoal text-brand-ivory px-6 md:px-8 text-[9px] md:text-[10px] font-bold uppercase tracking-widest transition-all hover:bg-brand-dark hover:scale-105 active:scale-95"
+                className="group flex h-12 md:h-14 items-center justify-center gap-3 md:gap-4 rounded-full bg-brand-charcoal text-brand-ivory px-6 md:px-8 text-[11px] md:text-xs font-bold uppercase tracking-widest transition-all hover:bg-brand-dark hover:scale-105 active:scale-95"
               >
-                <span>Explore The Collection</span>
+                <span>VIEW COLLECTION</span>
                 <ArrowRight className="w-3.5 h-3.5 text-brand-brass transition-transform group-hover:translate-x-1" />
               </a>
               <a
                 href="#story"
-                className="text-[9px] md:text-[10px] uppercase tracking-widest text-brand-charcoal/60 font-bold hover:text-brand-charcoal transition-colors underline underline-offset-8 decoration-brand-brass/30 hover:decoration-brand-brass hidden sm:block"
+                className="text-[11px] md:text-xs uppercase tracking-widest text-brand-charcoal/60 font-bold hover:text-brand-charcoal transition-colors underline underline-offset-8 decoration-brand-brass/30 hover:decoration-brand-brass hidden sm:block"
               >
                 Our Heritage
               </a>
@@ -112,7 +112,7 @@ export default function HeroSection() {
               }}
               // Apply 3D perspective to the container and force GPU acceleration
               style={{ perspective: 1200, z: 0 }}
-              className="relative w-[90%] sm:w-[75%] md:w-full max-w-[320px] sm:max-w-[340px] lg:max-w-[460px] aspect-[1/1.28] md:aspect-[1/1.4] rounded-t-[250px] overflow-hidden shadow-2xl bg-[#0b0a09] ring-1 ring-brand-charcoal/10 will-change-transform"
+              className="relative w-[90%] sm:w-[75%] md:w-full max-w-[320px] sm:max-w-[340px] lg:max-w-[460px] aspect-[1/1.28] md:aspect-[1/1.4] rounded-t-[250px] overflow-hidden shadow-2xl bg-brand-dark ring-1 ring-brand-charcoal/10 will-change-transform"
             >
               {/* 1. The Inside (Revealed when doors open) */}
               <motion.div
@@ -127,7 +127,7 @@ export default function HeroSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90" />
 
                 <div className="absolute bottom-6 right-6 md:bottom-8 md:right-8 text-right">
-                  <span className="text-[8px] md:text-[9px] uppercase tracking-widest text-brand-brass/80 block mb-1">
+                  <span className="text-[9px] md:text-[10px] uppercase tracking-widest text-brand-brass/80 block mb-1">
                     Welcome to our
                   </span>
                   <span className="font-serif italic text-xl md:text-2xl text-brand-ivory drop-shadow-lg">

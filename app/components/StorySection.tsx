@@ -115,7 +115,7 @@ export default function StorySection() {
     <section
       ref={containerRef}
       id="story"
-      className="relative w-full bg-[#0a0a0a] text-white py-32 md:py-48 overflow-hidden"
+      className="relative w-full bg-[#141312] text-white py-32 md:py-48 overflow-hidden"
     >
       <div className="max-w-screen-2xl mx-auto px-6 md:px-12 lg:px-24">
         
@@ -126,8 +126,8 @@ export default function StorySection() {
             
             <div className="story-fade-elem flex items-center gap-4 mb-8">
               <div className="h-[1px] w-12 bg-brand-brass/60" />
-              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-brand-brass">
-                Jagatpura · Jaipur
+              <span className="text-[11px] font-sans uppercase tracking-[0.2em] text-brand-brass font-semibold">
+                Jagatpura, Jaipur
               </span>
             </div>
 
@@ -144,7 +144,7 @@ export default function StorySection() {
               </span>
             </h2>
 
-            <div className="story-fade-elem space-y-6 text-white/60 font-sans font-light text-base md:text-lg leading-relaxed max-w-lg">
+            <div className="story-fade-elem space-y-6 text-white/60 font-sans font-light text-base md:text-lg leading-relaxed max-w-[60ch]">
               <p>
                 The Home Darbaar is a premier boutique sourcing exquisite home decor, luxury lighting, and traditional handicraft innovations. 
               </p>
@@ -153,7 +153,7 @@ export default function StorySection() {
               </p>
             </div>
 
-            <div className="story-fade-elem mt-12 pt-12 border-t border-white/[0.08] max-w-lg">
+            <div className="story-fade-elem mt-12 pt-12 border-t border-white/[0.08] max-w-[60ch]">
               <p className="font-serif italic text-white/90 text-xl leading-relaxed mb-4">
                 "We bring character, warmth, and timeless design to every space."
               </p>
@@ -166,7 +166,7 @@ export default function StorySection() {
                   />
                 </div>
                 <div>
-                  <p className="text-xs font-mono tracking-[0.2em] uppercase text-brand-brass">
+                  <p className="text-[11px] font-sans tracking-[0.15em] uppercase text-brand-brass font-semibold">
                     Chiranshu Khandelwal
                   </p>
                   <p className="text-[10px] font-sans tracking-widest text-white/40 uppercase mt-1.5">

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
-import { Compass, Sparkles, Droplets, Clock, Sun, Landmark, ArrowUpRight } from "lucide-react";
+import { Compass, Sun, Droplets, Clock, Landmark, ArrowUpRight } from "lucide-react";
 
 interface Product {
   id: string;
@@ -112,7 +112,7 @@ const PRODUCTS: Product[] = [
 
 const categoryIcons: { [key: string]: React.ComponentType<{ className?: string }> } = {
   All: Compass,
-  Lighting: Sparkles,
+  Lighting: Sun,
   Timepieces: Clock,
   Fountains: Droplets,
   Sacred: Sun,
@@ -211,7 +211,7 @@ function ProductCard({ product, index, onSelectProduct }: { product: Product; in
 
         {/* Floating Top Info */}
         <div className="absolute top-6 left-6 right-6 flex justify-between items-center z-10 pointer-events-none">
-          <span className="text-[9px] uppercase tracking-widest px-2.5 py-1 bg-brand-ivory/80 text-brand-charcoal rounded-full font-bold">
+          <span className="text-[10px] uppercase tracking-widest px-2.5 py-1 bg-brand-ivory/80 text-brand-charcoal rounded-full font-bold">
             {product.origin}
           </span>
           <div className="w-8 h-8 rounded-full bg-brand-ivory/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -221,14 +221,14 @@ function ProductCard({ product, index, onSelectProduct }: { product: Product; in
 
         {/* Floating Bottom Card Details */}
         <div className="absolute bottom-6 left-6 right-6 p-5 luxury-glass rounded-[1.8rem] transform translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
-          <span className="text-[9px] uppercase tracking-widest text-[#A75D5D] font-bold block mb-1">
+          <span className="text-[10px] uppercase tracking-widest text-[#A75D5D] font-bold block mb-1">
             {product.category}
           </span>
           <h4 className="text-md font-serif font-semibold text-brand-charcoal group-hover:text-brand-brass transition-colors leading-tight">
             {product.name}
           </h4>
           <div className="flex justify-between items-center mt-3 pt-3 border-t border-brand-brass/10">
-            <span className="text-xs text-brand-charcoal/50 font-sans">Acquisition</span>
+            <span className="text-xs text-brand-charcoal/50 font-sans">Tier</span>
             <span className="text-xs font-serif font-bold text-brand-charcoal">{product.price}</span>
           </div>
         </div>

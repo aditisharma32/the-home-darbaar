@@ -4,7 +4,7 @@ import React, { useState, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Sparkles, MapPin, PhoneCall, ArrowRight } from "lucide-react";
+import { MapPin, PhoneCall, ArrowRight } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -16,6 +16,20 @@ export default function ShowroomSection() {
   const [showroomEmail, setShowroomEmail] = useState("");
   const [showroomMsg, setShowroomMsg] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [errors, setErrors] = useState<{ name?: string; contact?: string; intent?: string }>({});
+
+  const validateForm = () => {
+    const newErrors: typeof errors = {};
+    if (!showroomName.trim()) newErrors.name = "Please enter your name";
+    if (!showroomEmail.trim()) {
+      newErrors.contact = "Please enter your email or phone number";
+    } else if (!showroomEmail.includes("@") && !/^\+?\d[\d\s-]{7,}$/.test(showroomEmail)) {
+      newErrors.contact = "Please enter a valid email or phone number";
+    }
+    if (!showroomMsg.trim()) newErrors.intent = "Please describe your interest";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   useGSAP(() => {
     if (!containerRef.current) return;
@@ -40,12 +54,14 @@ export default function ShowroomSection() {
 
   const handleShowroomSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) return;
     setFormSubmitted(true);
     setTimeout(() => {
       setFormSubmitted(false);
       setShowroomName("");
       setShowroomEmail("");
       setShowroomMsg("");
+      setErrors({});
     }, 4000);
   };
 
@@ -60,9 +76,9 @@ export default function ShowroomSection() {
         {/* Left Column: Showroom Info & Typography */}
         <div className="lg:col-span-5 flex flex-col justify-between pt-4">
           <div>
-            <span className="reveal-item flex items-center gap-3 text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-brand-brass font-bold mb-8">
-              <Sparkles className="w-3.5 h-3.5" />
-              Visit The Boutique
+            <span className="reveal-item flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-brand-brass font-bold mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-brass" />
+              Visit The Showroom
             </span>
             <h2 className="reveal-item font-serif text-[3.5rem] leading-[0.95] md:text-[5rem] font-light tracking-tight text-brand-charcoal">
               The Jaipur
@@ -86,10 +102,11 @@ export default function ShowroomSection() {
                 <MapPin className="w-4 h-4" />
               </div>
               <div className="pt-1">
-                <span className="text-[9px] uppercase tracking-[0.2em] text-brand-charcoal/50 font-bold block mb-1.5">Physical Address</span>
+                <span className="text-[10px] uppercase tracking-[0.2em] text-brand-charcoal/50 font-bold block mb-1.5">Physical Address</span>
                 <span className="text-sm font-medium text-brand-charcoal block leading-snug">
-                  Showrooms 14-16, Heritage Arcade,<br />M.I. Road, Jaipur, Rajasthan, 302001
+                  175, Karolan Ka Barh, Gyan Vihar Marg,<br />Jagatpura, Jaipur, Rajasthan, 302017
                 </span>
+                <span className="text-xs text-brand-charcoal/40 mt-1 block">Near Suresh Gyan Vihar University</span>
               </div>
             </div>
 
@@ -98,10 +115,11 @@ export default function ShowroomSection() {
                 <PhoneCall className="w-4 h-4" />
               </div>
               <div className="pt-1">
-                <span className="text-[9px] uppercase tracking-[0.2em] text-brand-charcoal/50 font-bold block mb-1.5">Curator Hotline</span>
+                <span className="text-[10px] uppercase tracking-[0.2em] text-brand-charcoal/50 font-bold block mb-1.5">Contact</span>
                 <span className="text-sm font-medium text-brand-charcoal block">
-                  +91 98765 43210
+                  +91 80440 10997
                 </span>
+                <span className="text-xs text-brand-charcoal/40 mt-1 block">Open 10 AM — 10 PM, all days</span>
               </div>
             </div>
           </div>
@@ -109,71 +127,70 @@ export default function ShowroomSection() {
 
         {/* Right Column: High-End Minimalist Form */}
         <div className="lg:col-span-7 reveal-item">
-          <div className="bg-white p-10 md:p-16 rounded-[2px] shadow-[0_30px_60px_rgba(0,0,0,0.04)] border border-brand-charcoal/5 relative h-full flex flex-col justify-center">
+          <div className="bg-white p-10 md:p-16 rounded-3xl shadow-[0_30px_60px_rgba(0,0,0,0.08)] border border-brand-charcoal/5 relative h-full flex flex-col justify-center">
             
-            <h3 className="font-serif text-3xl md:text-4xl font-medium text-brand-charcoal mb-4">Arrange Viewing</h3>
+            <h3 className="font-serif text-3xl md:text-4xl font-medium text-brand-charcoal mb-4">Arrange a Viewing</h3>
             <p className="text-sm text-brand-charcoal/50 mb-12 max-w-[45ch] leading-relaxed">
-              Establish contact with our curator to set up a private, guided viewing or request a specialized catalog dispatch.
+              Contact our showroom team to set up a private, guided viewing or request a specialized catalog.
             </p>
 
             {formSubmitted ? (
               <div className="py-20 text-center flex flex-col items-center justify-center animate-in fade-in duration-1000">
-                <div className="w-16 h-16 bg-[#FAF6F0] text-brand-brass rounded-full flex items-center justify-center mb-6">
-                  <Sparkles className="w-6 h-6" />
+                <div className="w-16 h-16 bg-brand-brass/10 text-brand-brass rounded-full flex items-center justify-center mb-6 border border-brand-brass/20">
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
                 </div>
-                <h4 className="font-serif text-2xl font-medium text-brand-charcoal">Namaste & Thank You</h4>
+                <h4 className="font-serif text-2xl font-medium text-brand-charcoal">Thank You</h4>
                 <p className="text-sm text-brand-charcoal/60 max-w-[32ch] leading-relaxed mt-4">
-                  Your viewing request was received. Our Jaipur concierge will establish connection with you shortly.
+                  Thank you for reaching out. A design consultant will contact you within 24 hours.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleShowroomSubmit} className="space-y-10">
+              <form onSubmit={handleShowroomSubmit} className="space-y-10" noValidate>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                  <div className="relative group">
+                    <div className="relative group">
                     <input 
                       type="text" 
-                      required
                       value={showroomName}
-                      onChange={(e) => setShowroomName(e.target.value)}
+                      onChange={(e) => { setShowroomName(e.target.value); if (errors.name) setErrors(prev => ({ ...prev, name: undefined })); }}
                       id="name"
-                      className="peer w-full bg-transparent border-b border-brand-charcoal/20 px-0 py-3 text-base text-brand-charcoal placeholder-transparent focus:outline-none focus:border-brand-brass transition-colors rounded-none"
+                      className={`peer w-full bg-transparent border-b ${errors.name ? 'border-brand-clay' : 'border-brand-charcoal/20'} px-0 py-3 text-base text-brand-charcoal placeholder-transparent focus:outline-none focus:border-brand-brass transition-colors rounded-none`}
                       placeholder="Name"
                     />
                     <label 
                       htmlFor="name" 
-                      className="absolute left-0 -top-4 text-[9px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-brand-charcoal/30 peer-placeholder-shown:top-3 peer-placeholder-shown:uppercase-none peer-placeholder-shown:tracking-normal peer-placeholder-shown:font-normal peer-focus:-top-4 peer-focus:text-[9px] peer-focus:uppercase peer-focus:tracking-[0.2em] peer-focus:font-bold peer-focus:text-brand-brass cursor-text"
+                      className="absolute left-0 -top-4 text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-brand-charcoal/30 peer-placeholder-shown:top-3 peer-placeholder-shown:uppercase-none peer-placeholder-shown:tracking-normal peer-placeholder-shown:font-normal peer-focus:-top-4 peer-focus:text-[10px] peer-focus:uppercase peer-focus:tracking-[0.2em] peer-focus:font-bold peer-focus:text-brand-brass cursor-text"
                     >
                       Your Name
                     </label>
+                    {errors.name && <span className="text-brand-clay text-xs mt-2 block">{errors.name}</span>}
                   </div>
                   
                   <div className="relative group">
                     <input 
                       type="text" 
-                      required
                       value={showroomEmail}
-                      onChange={(e) => setShowroomEmail(e.target.value)}
+                      onChange={(e) => { setShowroomEmail(e.target.value); if (errors.contact) setErrors(prev => ({ ...prev, contact: undefined })); }}
                       id="contact"
-                      className="peer w-full bg-transparent border-b border-brand-charcoal/20 px-0 py-3 text-base text-brand-charcoal placeholder-transparent focus:outline-none focus:border-brand-brass transition-colors rounded-none"
+                      className={`peer w-full bg-transparent border-b ${errors.contact ? 'border-brand-clay' : 'border-brand-charcoal/20'} px-0 py-3 text-base text-brand-charcoal placeholder-transparent focus:outline-none focus:border-brand-brass transition-colors rounded-none`}
                       placeholder="Contact"
                     />
                     <label 
                       htmlFor="contact" 
-                      className="absolute left-0 -top-4 text-[9px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-brand-charcoal/30 peer-placeholder-shown:top-3 peer-placeholder-shown:uppercase-none peer-placeholder-shown:tracking-normal peer-placeholder-shown:font-normal peer-focus:-top-4 peer-focus:text-[9px] peer-focus:uppercase peer-focus:tracking-[0.2em] peer-focus:font-bold peer-focus:text-brand-brass cursor-text"
+                      className="absolute left-0 -top-4 text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-brand-charcoal/30 peer-placeholder-shown:top-3 peer-placeholder-shown:uppercase-none peer-placeholder-shown:tracking-normal peer-placeholder-shown:font-normal peer-focus:-top-4 peer-focus:text-[10px] peer-focus:uppercase peer-focus:tracking-[0.2em] peer-focus:font-bold peer-focus:text-brand-brass cursor-text"
                     >
-                      Email / Number
+                      Email or Phone
                     </label>
+                    {errors.contact && <span className="text-brand-clay text-xs mt-2 block">{errors.contact}</span>}
                   </div>
                 </div>
 
                 <div className="relative group">
                   <textarea 
-                    required
                     value={showroomMsg}
-                    onChange={(e) => setShowroomMsg(e.target.value)}
+                    onChange={(e) => { setShowroomMsg(e.target.value); if (errors.intent) setErrors(prev => ({ ...prev, intent: undefined })); }}
                     id="intent"
                     rows={1}
-                    className="peer w-full bg-transparent border-b border-brand-charcoal/20 px-0 py-3 text-base text-brand-charcoal placeholder-transparent focus:outline-none focus:border-brand-brass transition-colors rounded-none resize-none overflow-hidden min-h-[40px]"
+                    className={`peer w-full bg-transparent border-b ${errors.intent ? 'border-brand-clay' : 'border-brand-charcoal/20'} px-0 py-3 text-base text-brand-charcoal placeholder-transparent focus:outline-none focus:border-brand-brass transition-colors rounded-none resize-none overflow-hidden min-h-[40px]`}
                     placeholder="Intent"
                     onInput={(e) => {
                       const target = e.target as HTMLTextAreaElement;
@@ -183,18 +200,19 @@ export default function ShowroomSection() {
                   />
                   <label 
                     htmlFor="intent" 
-                    className="absolute left-0 -top-4 text-[9px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-brand-charcoal/30 peer-placeholder-shown:top-3 peer-placeholder-shown:uppercase-none peer-placeholder-shown:tracking-normal peer-placeholder-shown:font-normal peer-focus:-top-4 peer-focus:text-[9px] peer-focus:uppercase peer-focus:tracking-[0.2em] peer-focus:font-bold peer-focus:text-brand-brass cursor-text"
+                    className="absolute left-0 -top-4 text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal/40 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-brand-charcoal/30 peer-placeholder-shown:top-3 peer-placeholder-shown:uppercase-none peer-placeholder-shown:tracking-normal peer-placeholder-shown:font-normal peer-focus:-top-4 peer-focus:text-[10px] peer-focus:uppercase peer-focus:tracking-[0.2em] peer-focus:font-bold peer-focus:text-brand-brass cursor-text"
                   >
-                    Acquisition Intent
+                    Your Message
                   </label>
+                  {errors.intent && <span className="text-brand-clay text-xs mt-2 block">{errors.intent}</span>}
                 </div>
 
                 <div className="pt-6">
                   <button 
                     type="submit"
-                    className="group w-full md:w-auto flex h-14 items-center justify-center gap-4 px-10 rounded-full bg-brand-charcoal text-brand-ivory font-bold uppercase tracking-[0.2em] text-[9px] transition-all duration-500 hover:bg-brand-brass hover:text-brand-charcoal"
+                    className="group w-full md:w-auto flex h-14 items-center justify-center gap-4 px-10 rounded-full bg-brand-charcoal text-brand-ivory font-bold uppercase tracking-[0.2em] text-[11px] transition-all duration-500 hover:bg-brand-brass hover:text-brand-charcoal active:scale-[0.98]"
                   >
-                    <span>Submit Request</span>
+                    <span>SUBMIT REQUEST</span>
                     <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>

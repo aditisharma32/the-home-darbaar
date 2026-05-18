@@ -1,11 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
 
 export default function NavigationBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 80);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
@@ -13,10 +22,14 @@ export default function NavigationBar() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 120, damping: 20, delay: 0.1 }}
-        className="fixed top-6 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-5xl luxury-glass rounded-full px-6 py-4 flex items-center justify-between shadow-lg"
+        className={`fixed top-6 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-5xl rounded-full px-6 py-4 flex items-center justify-between transition-all duration-500 ${
+          isScrolled 
+            ? "bg-[#FAF6F0]/90 backdrop-blur-xl border border-brand-charcoal/5 shadow-[0_8px_32px_rgba(0,0,0,0.05)]" 
+            : "luxury-glass shadow-lg"
+        }`}
       >
         <a href="#" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-full bg-brand-charcoal flex items-center justify-center border border-brand-brass/40 group-hover:rotate-45 transition-transform duration-500">
+          <div className="w-8 h-8 rounded-full bg-brand-charcoal flex items-center justify-center border border-brand-brass/40 transition-transform duration-500 group-hover:scale-[1.04]">
             <span className="font-serif text-[13px] font-bold text-brand-brass">D</span>
           </div>
           <span className="font-serif text-md md:text-lg font-bold tracking-widest text-brand-charcoal">
@@ -36,16 +49,16 @@ export default function NavigationBar() {
         <div className="flex items-center gap-4">
           <a 
             href="#spotlight" 
-            className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-charcoal hover:bg-brand-dark text-brand-ivory text-[10px] font-bold uppercase tracking-widest transition-all transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+            className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer bg-brand-charcoal text-brand-ivory hover:bg-brand-brass hover:text-brand-charcoal group"
           >
-            <span>Catalog Explorer</span>
-            <ArrowRight className="w-3 h-3 text-brand-brass" />
+            <span>View Collection</span>
+            <ArrowRight className="w-3 h-3 text-brand-brass group-hover:text-brand-charcoal transition-colors" />
           </a>
 
           {/* Mobile Hamburger Trigger */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-full hover:bg-brand-charcoal/5 transition-colors text-brand-charcoal"
+            className="md:hidden p-2 rounded-full transition-colors hover:bg-brand-charcoal/5 text-brand-charcoal"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -61,7 +74,7 @@ export default function NavigationBar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-30 bg-brand-ivory/95 backdrop-blur-xl flex flex-col justify-center px-12 md:hidden"
+            className="fixed inset-0 z-30 bg-brand-ivory backdrop-blur-2xl flex flex-col justify-center px-12 md:hidden"
           >
             <div className="flex flex-col gap-8 text-2xl font-serif font-bold tracking-wide text-brand-charcoal">
               <motion.a 
@@ -82,7 +95,7 @@ export default function NavigationBar() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="hover:text-brand-brass transition-colors"
               >
-                The Curated Collections
+                The Curated Edit
               </motion.a>
               <motion.a 
                 initial={{ opacity: 0, x: -20 }}
@@ -92,7 +105,7 @@ export default function NavigationBar() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="hover:text-brand-brass transition-colors"
               >
-                Boutique Catalog
+                Heritage Lookbook
               </motion.a>
               <motion.a 
                 initial={{ opacity: 0, x: -20 }}
@@ -111,7 +124,7 @@ export default function NavigationBar() {
               transition={{ delay: 0.5 }}
               className="mt-16 pt-8 border-t border-brand-brass/20 text-xs tracking-widest uppercase text-brand-charcoal/50"
             >
-              The Home Darbaar • Jaipur, Rajasthan
+              The Home Darbaar — Jagatpura, Jaipur
             </motion.div>
           </motion.div>
         )}

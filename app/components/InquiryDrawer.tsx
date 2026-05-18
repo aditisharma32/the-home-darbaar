@@ -28,7 +28,7 @@ export default function InquiryDrawer({ isOpen, onClose, product }: InquiryDrawe
   useEffect(() => {
     if (product) {
       setName("");
-      setMessage(`Namaste, I am interested in inquiring about the "${product.name}" from your collection. Could you please share more details regarding its availability, pricing, and shipping to my location?`);
+      setMessage(`Hi, I'm interested in the "${product.name}" from your collection. Please share availability and pricing details.`);
       setIsSuccess(false);
     }
   }, [product]);
@@ -57,7 +57,7 @@ export default function InquiryDrawer({ isOpen, onClose, product }: InquiryDrawe
       setIsSuccess(true);
       
       // Construct WhatsApp URL
-      const phoneNumber = "919876543210"; // Placeholder for The Home Darbaar Jaipur showroom
+      const phoneNumber = "918044010997";
       const encodedText = encodeURIComponent(
         `*The Home Darbaar - Inquiry*\n\n` +
         `*Customer Name:* ${name}\n` +
@@ -98,8 +98,8 @@ export default function InquiryDrawer({ isOpen, onClose, product }: InquiryDrawe
             {/* Header */}
             <div className="flex items-center justify-between border-b border-brand-brass/10 pb-6 mb-8">
               <div>
-                <span className="text-xs uppercase tracking-widest text-brand-brass font-medium">Inquiry Console</span>
-                <h3 className="text-2xl font-serif font-semibold mt-1">Acquire & Inquire</h3>
+                <span className="text-xs uppercase tracking-widest text-brand-brass font-medium">Product Inquiry</span>
+                <h3 className="text-2xl font-serif font-semibold mt-1">Inquire About This Piece</h3>
               </div>
               <button
                 onClick={onClose}
@@ -182,11 +182,11 @@ export default function InquiryDrawer({ isOpen, onClose, product }: InquiryDrawe
                     className="w-full flex h-14 items-center justify-center gap-3 rounded-full bg-brand-charcoal hover:bg-brand-dark disabled:bg-brand-charcoal/50 text-brand-ivory font-medium transition-all transform hover:scale-[1.01] active:scale-[0.98] shadow-lg cursor-pointer"
                   >
                     {isLoading ? (
-                      <div className="w-5 h-5 border-2 border-brand-ivory border-t-transparent rounded-full animate-spin" />
+                      <span className="animate-pulse">Sending...</span>
                     ) : (
                       <>
                         <Send className="w-4 h-4" />
-                        <span>Establish Showroom Connection</span>
+                        <span>Send via WhatsApp</span>
                       </>
                     )}
                   </button>
@@ -196,18 +196,18 @@ export default function InquiryDrawer({ isOpen, onClose, product }: InquiryDrawe
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center text-center py-12 px-6 bg-emerald-500/5 rounded-2xl border border-emerald-500/20"
+                  className="flex flex-col items-center justify-center text-center py-12 px-6 bg-brand-brass/5 rounded-2xl border border-brand-brass/20"
                 >
-                  <div className="w-16 h-16 bg-emerald-500 text-brand-ivory rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/10 mb-6">
+                  <div className="w-16 h-16 bg-brand-brass/10 text-brand-brass rounded-full flex items-center justify-center border border-brand-brass/20 mb-6">
                     <Check className="w-8 h-8" />
                   </div>
-                  <h4 className="text-2xl font-serif font-semibold text-emerald-800">Connection Initiated</h4>
+                  <h4 className="text-2xl font-serif font-semibold text-brand-charcoal">Message Sent</h4>
                   <p className="text-sm text-brand-charcoal/70 mt-3 leading-relaxed max-w-[32ch]">
-                    Your inquiry metadata was successfully packaged. You have been redirected to WhatsApp to complete your message with our Jaipur curator.
+                    You&rsquo;ve been redirected to WhatsApp to complete your inquiry with our Jaipur showroom team.
                   </p>
                   <button
                     onClick={onClose}
-                    className="mt-8 px-6 py-2.5 rounded-full border border-emerald-500/30 text-emerald-800 hover:bg-emerald-500/5 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
+                    className="mt-8 px-6 py-2.5 rounded-full border border-brand-brass/30 text-brand-charcoal hover:bg-brand-brass/5 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
                   >
                     Return to Gallery
                   </button>

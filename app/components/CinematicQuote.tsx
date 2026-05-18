@@ -4,14 +4,13 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Sparkles } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 const wordsList = [
-  { text: "“True", className: "" },
+  { text: "\u201CTrue", className: "" },
   { text: "luxury", className: "" },
   { text: "is", className: "" },
   { text: "silent.", className: "highlight italic font-normal", targetColor: "#c5a880" },
@@ -34,7 +33,7 @@ const wordsList = [
   { text: "precision", className: "" },
   { text: "of", className: "" },
   { text: "moving", className: "" },
-  { text: "gears.”", className: "" }
+  { text: "gears.\u201D", className: "" }
 ];
 
 export default function CinematicQuote() {
@@ -67,7 +66,7 @@ export default function CinematicQuote() {
           trigger: containerRef.current,
           start: "top 70%", 
           end: "center 45%", 
-          scrub: 1.5, // slightly more smoothing for the blur effect
+          scrub: 1.5,
         }
       }
     );
@@ -77,13 +76,13 @@ export default function CinematicQuote() {
   return (
     <section 
       ref={containerRef}
-      className="py-32 md:py-48 bg-[#FAF6F0] flex items-center justify-center text-center px-6 relative"
+      className="py-32 md:py-48 bg-[#FAF6F0] flex items-center justify-center px-6 md:px-16 relative"
     >
-      <div className="max-w-4xl flex flex-col items-center z-10">
-        <Sparkles className="w-8 h-8 text-brand-brass mb-12 opacity-50" />
+      <div className="max-w-[1400px] mx-auto w-full flex flex-col items-center text-center z-10">
+        <div className="w-16 h-[1px] bg-brand-brass/40 mb-12 mx-auto" />
         <h2 
           ref={textRef}
-          className="font-serif text-3xl md:text-5xl lg:text-6xl text-brand-charcoal leading-[1.3] md:leading-[1.4] font-medium tracking-tight flex flex-wrap justify-center gap-x-[0.25em] gap-y-2 md:gap-y-4"
+          className="font-serif text-3xl md:text-5xl lg:text-6xl text-brand-charcoal leading-[1.3] md:leading-[1.4] font-medium tracking-tight flex flex-wrap justify-center gap-x-[0.25em] gap-y-2 md:gap-y-4 max-w-4xl"
         >
           {wordsList.map((word, i) => (
             <span 
@@ -94,10 +93,9 @@ export default function CinematicQuote() {
             </span>
           ))}
         </h2>
-        <div className="mt-16 flex items-center gap-4">
-          <div className="w-12 h-[1px] bg-brand-charcoal/20" />
-          <span className="text-[10px] uppercase tracking-[0.2em] text-brand-charcoal font-bold">The Home Darbaar Manifesto</span>
-          <div className="w-12 h-[1px] bg-brand-charcoal/20" />
+        <div className="mt-16 flex items-center justify-center gap-4">
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-brass" />
+          <span className="text-[11px] uppercase tracking-[0.2em] text-brand-charcoal/60 font-bold">The Home Darbaar Manifesto</span>
         </div>
       </div>
     </section>

@@ -43,7 +43,7 @@ export default function Home() {
         <StorySection />
         <CinematicQuote />
         <CollectionsSection />
-        <SpotlightSection onSelectProduct={handleOpenDrawer} />
+        <SpotlightSection />
         <ShowroomSection />
       </main>
 
