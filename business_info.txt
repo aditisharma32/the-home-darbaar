@@ -1,0 +1,39 @@
+# The Home Darbaar - Business Information & Assets
+
+## 1. Business Identity & Institutional Registry (For Header, Footer, and Contact Pages)
+- **Primary Trade Name:** The Home Darbaar
+- **Alternative Directory Spelling:** The Home Darbar
+- **Physical Store Address:** 175, Karolan Ka Barh, Gyan Vihar Marg, Jagatpura, OBC Colony, Jaipur, Rajasthan, PIN - 302017
+- **Prominent Local Landmark:** Near Suresh Gyan Vihar University
+- **Operating Hours:** 10:00 AM to 10:00 PM (Monday to Sunday)
+- **Official Primary Contact Numbers:** +91 8044010997, +91 9574
+- **Direct Business WhatsApp Link:** Pre-configure your WhatsApp CTA buttons to open a chat with +918044010997.
+- **Primary Contact Person / Proprietor:** Chiranshu Khandelwal
+- **Verified GSTIN (Goods & Services Tax Identifier):** 08JUYPK0843L3ZN (Note: Registered as an active retail/wholesale sole proprietorship since November 2025).
+
+## 2. Complete Product Catalog & Technical Specifications
+Use this structured taxonomy to populate your e-commerce database, product detail pages (PDPs), and filter systems.
+
+- **Chandelier Jhoomar:** ₹10,000 / Piece | Solid Brass body, LED light source, 3 lights, antique finish. Elegant Turkish-style design crafted with colorful mosaic glass. Emits a warm, welcoming light.
+- **Working Gear Wall Watch:** ₹5,000 / Piece | Size: 27-inch diameter. Metal composition. Premium black and gold design with fully active, exposed moving gears. Perfectly styled for main living halls, executive offices, and lobbies.
+- **Ganesh Statue:** ₹2,000 / Piece | Premium Poly-resin, Height: 10 inches, polished finish. Beautiful white and gold coloring. Weather-resistant and handcrafted. Ideal for Diwali, housewarmings, weddings, corporate gifting, temples, and hotel decors.
+- **Lord Buddha Water Fountain:** Get Latest Price | High-durability fiber-reinforced polymer / resin. Features integrated peaceful cascading water flow, tabletop design, and soft LED lighting.
+- **Hanging Lamps:** Get Latest Price | Custom metal alloys and multi-finish options. Accent lighting solutions for modern and traditional homes.
+- **Artificial Home Accessories:** Get Latest Price | Premium synthetic materials. Low-maintenance floral setups, custom table decor accents, and green accessories.
+- **Cat DG Set / Artificial Cat Set:** Get Latest Price | High-quality poly-resin with hand-painted detailing. Realistic artificial animal figurines designed for garden and indoor landscaping.
+- **Lamps Manufacturing:** Get Latest Price | Custom fabrications. Bespoke contract manufacturing and retail supply of high-end commercial/residential lighting.
+
+## 3. "About Us" Core Brand Story (Ready-to-Use Copy)
+"Welcome to The Home Darbaar, Jaipur's premier boutique for exquisite home decor, luxury lighting, and traditional handicraft innovations. Located in the heart of Jagatpura, near Suresh Gyan Vihar University, we bridge the gap between historic Indian craftsmanship and modern interior luxury. Directed by Chiranshu Khandelwal, our team meticulously curates and manufactures statement decor pieces—ranging from our iconic Turkish-style Brass Chandelier Jhoomars to heavy mechanical Gear Wall Watches and serene, handcrafted sacred sculptures. Whether you are a homeowner seeking to elevate your space, a designer looking for bespoke custom lighting solutions, or a corporate client sourcing GST-compliant wholesale orders, The Home Darbaar is committed to delivering unmatched quality, timeless elegance, and direct-to-door reliability across India."
+
+## 4. Direct Customer Reviews (For "Testimonials" Page Section)
+These real, highly-rated reviews from local directories can be showcased on the homepage to instantly build credibility:
+- ⭐⭐⭐⭐⭐ Somesh: "I bought this amazing handcrafted Vishnu Shank and that too at an amazing price. Amazing Store in Jagatpura, must visit!"
+- ⭐⭐⭐⭐⭐ Bhoopendra: "Polite professionals who ensure timely delivery of high-quality, environment-friendly products. Excellent overall customer experience!"
+
+## 5. Website Interactive Architecture Design
+To optimize your user experience (UX) and drive conversions, structure your development blueprint around these interactive elements:
+- **Dual-Action Checkout Flow:**
+  - E-Commerce Checkout: Set up a payment gateway (like Razorpay) for standardized, fixed-price items like the Wall Clock (₹5,000) and Ganesha Statue (₹2,000).
+  - "Get Latest Price" WhatsApp Integration: For premium or highly customized products (water fountains, hanging lamps), place a prominent button that redirects the user to WhatsApp with a pre-filled text : "Hi The Home Darbaar, I am interested in getting a custom price quote for the Lord Buddha Water Fountain shown on your website."
+- **B2B Tax Invoice Request Portal:** Because the business is GST-registered (08JUYPK0843L3ZN), add a checkbox during the cart checkout that allows interior designers, hotels, and corporate buyers to input their company GSTIN and billing address for seamless input tax credit filing.
