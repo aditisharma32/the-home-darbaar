@@ -17,111 +17,110 @@ const dummyImages = Array.from({ length: 12 }).map((_, i) => (
 
 export default function SpotlightSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const scrollTrackRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    if (!containerRef.current) return;
-    
-    // Simple vertical parallax on images
-    const images = gsap.utils.toArray<HTMLElement>(".parallax-img");
-    
-    images.forEach((img, i) => {
-      const speed = i % 2 === 0 ? 15 : -15; // Alternating subtle up/down parallax
-      
-      gsap.to(img, {
-        yPercent: speed,
-        ease: "none",
-        scrollTrigger: {
-          trigger: img.parentElement,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true
-        }
-      });
+    if (!containerRef.current || !scrollTrackRef.current) return;
+
+    const track = scrollTrackRef.current;
+
+    const getScrollAmount = () => {
+      return track.scrollWidth - window.innerWidth;
+    };
+
+    // Pinned Horizontal Scroll trigger
+    gsap.to(track, {
+      x: () => -getScrollAmount(),
+      ease: "none",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top top",
+        end: () => `+=${getScrollAmount()}`,
+        pin: true,
+        scrub: 1, // Butter-smooth continuous horizontal slide
+        invalidateOnRefresh: true, // Recalculate dimensions on window resize
+        anticipatePin: 1,
+      }
     });
+
   }, { scope: containerRef });
 
   return (
     <section 
       ref={containerRef}
       id="spotlight" 
-      className="py-32 md:py-48 bg-[#FAF6F0] text-brand-charcoal relative border-t border-brand-charcoal/10"
+      className="w-full min-h-screen bg-[#FAF6F0] overflow-hidden relative flex items-center border-t border-brand-charcoal/10"
     >
-      <div className="w-full max-w-[1400px] mx-auto px-6 md:px-16 flex flex-col items-start">
+      <div 
+        ref={scrollTrackRef} 
+        className="flex flex-row items-center gap-10 md:gap-16 px-6 md:px-16 lg:px-24 flex-nowrap h-[70vh] w-max py-4"
+      >
         
-        {/* Left-aligned Header for editorial asymmetry */}
-        <div className="flex flex-col items-start mb-24 md:mb-40 max-w-2xl">
+        {/* Slide 0: The Editorial Title Card */}
+        <div className="w-[320px] md:w-[480px] h-[80%] flex flex-col justify-center flex-shrink-0 mr-4 md:mr-8 select-none">
           <span className="flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-brand-brass font-bold mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-brass" />
             Heritage Lookbook
           </span>
-          <h2 className="font-serif text-[3rem] md:text-[5.5rem] font-light tracking-tight text-brand-charcoal leading-none">
+          <h2 className="font-serif text-[3.5rem] md:text-[5.5rem] font-light tracking-tight text-brand-charcoal leading-none">
             The Archive
           </h2>
-          <p className="mt-8 text-sm md:text-base text-brand-charcoal/60 max-w-lg font-sans">
-            A serene, unhurried walk through twelve selected archives of our heritage craftsmanship.
+          <p className="mt-8 text-sm md:text-base text-brand-charcoal/60 leading-relaxed font-sans max-w-sm">
+            A serene, unhurried walk through the archives of our heritage craftsmanship. Scroll down to discover our masterpieces.
           </p>
+          <div className="mt-8 flex items-center gap-2 text-brand-brass text-[10px] uppercase tracking-[0.25em] font-bold animate-pulse">
+            Scroll down to view
+            <ArrowRight className="w-3.5 h-3.5" />
+          </div>
         </div>
 
-        {/* Asymmetrical Editorial Grid (CSS Grid based) — reduced to 5 rows */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-y-40 md:gap-x-12 lg:gap-x-20 items-center">
-          
-          {/* Row 1: Massive Left, Small Right */}
-          <div className="md:col-span-7 aspect-[4/5] overflow-hidden rounded-sm relative group">
-             <img src={dummyImages[0]} className="parallax-img w-full h-[130%] object-cover -top-[15%] relative grayscale-[15%] contrast-[110%] group-hover:grayscale-0 transition-all duration-700" alt="Archive 1" />
-             <div className="absolute inset-0 bg-brand-charcoal/0 group-hover:bg-brand-charcoal/10 transition-all duration-500" />
+        {/* Slides 1 to 9: Gorgeous Lookbook Cards with alternating wave pattern */}
+        {dummyImages.slice(0, 9).map((img, i) => (
+          <div 
+            key={i} 
+            className={`flex-shrink-0 overflow-hidden rounded-[2px] relative group shadow-[0_20px_50px_rgba(0,0,0,0.05)] bg-brand-charcoal/5 ${
+              i % 2 === 0 
+                ? "h-full w-[380px] md:w-[480px]" 
+                : "h-[82%] w-[280px] md:w-[380px] self-center"
+            }`}
+          >
+            <img 
+              src={img} 
+              alt={`Archival Work ${i + 1}`} 
+              className="w-full h-full object-cover grayscale-[15%] contrast-[110%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out select-none" 
+            />
+            <div className="absolute inset-0 bg-brand-charcoal/0 group-hover:bg-brand-charcoal/5 transition-all duration-500 pointer-events-none" />
+            
+            {/* Elegant overlay indices */}
+            <div className="absolute bottom-6 left-6 z-10 flex flex-col pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity">
+              <span className="font-serif text-3xl md:text-4xl text-[#FAF6F0] font-light italic mb-1">
+                0{i + 1}
+              </span>
+              <span className="text-[9px] uppercase tracking-[0.2em] text-[#FAF6F0]/70 font-bold font-sans">
+                ARCHIVAL WORK
+              </span>
+            </div>
           </div>
-          <div className="md:col-span-4 md:col-start-9 aspect-[3/4] overflow-hidden rounded-sm relative group mt-12 md:mt-40">
-             <img src={dummyImages[1]} className="parallax-img w-full h-[130%] object-cover -top-[15%] relative grayscale-[15%] contrast-[110%] group-hover:grayscale-0 transition-all duration-700" alt="Archive 2" />
-             <div className="absolute inset-0 bg-brand-charcoal/0 group-hover:bg-brand-charcoal/10 transition-all duration-500" />
-          </div>
+        ))}
 
-          {/* Row 2: Center Wide */}
-          <div className="md:col-span-10 md:col-start-2 aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-sm relative group">
-             <img src={dummyImages[2]} className="parallax-img w-full h-[130%] object-cover -top-[15%] relative grayscale-[15%] contrast-[110%] group-hover:grayscale-0 transition-all duration-700" alt="Archive 3" />
-             <div className="absolute inset-0 bg-brand-charcoal/0 group-hover:bg-brand-charcoal/10 transition-all duration-500" />
-          </div>
-
-          {/* Row 3: Small Left, Massive Right */}
-          <div className="md:col-span-4 aspect-square overflow-hidden rounded-sm relative group mb-12 md:mb-32">
-             <img src={dummyImages[3]} className="parallax-img w-full h-[130%] object-cover -top-[15%] relative grayscale-[15%] contrast-[110%] group-hover:grayscale-0 transition-all duration-700" alt="Archive 4" />
-             <div className="absolute inset-0 bg-brand-charcoal/0 group-hover:bg-brand-charcoal/10 transition-all duration-500" />
-          </div>
-          <div className="md:col-span-7 md:col-start-6 aspect-[4/5] overflow-hidden rounded-sm relative group">
-             <img src={dummyImages[4]} className="parallax-img w-full h-[130%] object-cover -top-[15%] relative grayscale-[15%] contrast-[110%] group-hover:grayscale-0 transition-all duration-700" alt="Archive 5" />
-             <div className="absolute inset-0 bg-brand-charcoal/0 group-hover:bg-brand-charcoal/10 transition-all duration-500" />
-          </div>
-
-          {/* Row 4: Three Column Split */}
-          <div className="md:col-span-4 aspect-[3/4] overflow-hidden rounded-sm relative group md:mt-24">
-             <img src={dummyImages[5]} className="parallax-img w-full h-[130%] object-cover -top-[15%] relative grayscale-[15%] contrast-[110%] group-hover:grayscale-0 transition-all duration-700" alt="Archive 6" />
-             <div className="absolute inset-0 bg-brand-charcoal/0 group-hover:bg-brand-charcoal/10 transition-all duration-500" />
-          </div>
-          <div className="md:col-span-4 aspect-[3/4] overflow-hidden rounded-sm relative group">
-             <img src={dummyImages[6]} className="parallax-img w-full h-[130%] object-cover -top-[15%] relative grayscale-[15%] contrast-[110%] group-hover:grayscale-0 transition-all duration-700" alt="Archive 7" />
-             <div className="absolute inset-0 bg-brand-charcoal/0 group-hover:bg-brand-charcoal/10 transition-all duration-500" />
-          </div>
-          <div className="md:col-span-4 aspect-[3/4] overflow-hidden rounded-sm relative group md:mt-48">
-             <img src={dummyImages[7]} className="parallax-img w-full h-[130%] object-cover -top-[15%] relative grayscale-[15%] contrast-[110%] group-hover:grayscale-0 transition-all duration-700" alt="Archive 8" />
-             <div className="absolute inset-0 bg-brand-charcoal/0 group-hover:bg-brand-charcoal/10 transition-all duration-500" />
-          </div>
-
-          {/* Row 5: Final Massive Anchor */}
-          <div className="md:col-span-8 md:col-start-3 aspect-[4/5] overflow-hidden rounded-sm relative group">
-             <img src={dummyImages[8]} className="parallax-img w-full h-[130%] object-cover -top-[15%] relative grayscale-[15%] contrast-[110%] group-hover:grayscale-0 transition-all duration-700" alt="Archive 9" />
-             <div className="absolute inset-0 bg-brand-charcoal/0 group-hover:bg-brand-charcoal/10 transition-all duration-500" />
-          </div>
-
-        </div>
-
-        <div className="mt-32 self-center">
+        {/* Last Slide: Luxurious CTA Card */}
+        <div className="w-[300px] md:w-[420px] h-[80%] flex flex-col justify-center items-start flex-shrink-0 ml-8 md:ml-12 pr-16 select-none">
+          <span className="text-brand-brass font-bold text-[10px] uppercase tracking-[0.3em] mb-4">ARRANGE VIEWING</span>
+          <h3 className="font-serif text-3xl md:text-4xl font-light text-brand-charcoal mb-6 leading-tight">
+            Experience the Craft in Person
+          </h3>
+          <p className="text-xs md:text-sm text-brand-charcoal/60 leading-relaxed font-sans mb-8 max-w-xs">
+            Schedule a private, personalized viewing of our collections at our bespoke showroom.
+          </p>
           <a 
             href="#showroom" 
-            className="group inline-flex items-center gap-4 border border-brand-charcoal/20 text-brand-charcoal px-10 py-5 rounded-full hover:bg-brand-charcoal hover:text-brand-ivory transition-all duration-500"
+            className="group inline-flex items-center gap-4 border border-brand-charcoal/20 text-brand-charcoal px-8 py-4 rounded-full hover:bg-brand-charcoal hover:text-brand-ivory transition-all duration-500"
           >
-            <span className="text-[11px] uppercase tracking-[0.2em] font-bold">ARRANGE A VIEWING</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] font-bold">REQUEST INVITE</span>
             <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
+
       </div>
     </section>
   );
