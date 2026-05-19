@@ -6,7 +6,7 @@ import HeroSection from "./components/HeroSection";
 import MarqueeSection from "./components/MarqueeSection";
 import StorySection from "./components/StorySection";
 import FlowArtSection from "./components/FlowArtSection";
-import SpotlightSection from "./components/SpotlightSection";
+import GallerySection from "./components/GallerySection";
 import CinematicQuote from "./components/CinematicQuote";
 import ShowroomSection from "./components/ShowroomSection";
 import Footer from "./components/Footer";
@@ -43,7 +43,7 @@ export default function Home() {
         <StorySection />
         <CinematicQuote />
         <FlowArtSection />
-        <SpotlightSection />
+        <GallerySection />
         <ShowroomSection />
       </main>
 

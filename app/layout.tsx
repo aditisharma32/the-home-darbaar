@@ -1,16 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
+import { DM_Serif_Display, Outfit } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const dmSerif = DM_Serif_Display({
+  variable: "--font-dm-serif",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400"],
   style: ["normal", "italic"],
 });
 
-const plusJakarta = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
@@ -47,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${plusJakarta.variable} h-full antialiased`}
+      className={`${dmSerif.variable} ${outfit.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-[#FAF6F0] text-[#141312]">
         {children}
