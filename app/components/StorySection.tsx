@@ -10,7 +10,7 @@ if (typeof window !== "undefined") {
 }
 
 const stats = [
-  { value: 8, suffix: "+", label: "Product Categories" },
+  { value: "10 AM - 10 PM", label: "Operating Hours", isStatic: true },
   { value: 365, suffix: "", label: "Days Open" },
   { value: 2025, suffix: "", label: "Established" },
 ];
@@ -23,29 +23,14 @@ export default function StorySection() {
     () => {
       if (!containerRef.current) return;
 
-      // ── 1. Horizontal Wipe Reveal on the full-bleed image ──
+      // ── 1. Simple Fade-In on the full-bleed image ──
       gsap.fromTo(
         ".story-hero-img",
-        { clipPath: "inset(0 100% 0 0)" },
+        { opacity: 0 },
         {
-          clipPath: "inset(0 0% 0 0)",
-          duration: 1.8,
-          ease: "power3.inOut",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 65%",
-          },
-        },
-      );
-
-      // ── 2. Ken Burns slow zoom on the image ──
-      gsap.fromTo(
-        ".story-hero-img img",
-        { scale: 1.15 },
-        {
-          scale: 1,
-          duration: 8,
-          ease: "power1.out",
+          opacity: 1,
+          duration: 1.2,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 65%",
@@ -89,8 +74,8 @@ export default function StorySection() {
 
       // ── 5. Animated counters ──
       counterRefs.current.forEach((el, i) => {
-        if (!el) return;
-        const target = stats[i].value;
+        if (!el || stats[i].isStatic) return;
+        const target = stats[i].value as number;
 
         gsap.fromTo(
           el,
@@ -125,39 +110,7 @@ export default function StorySection() {
         },
       );
 
-      // ── 7. Floating inset image ──
-      gsap.fromTo(
-        ".story-inset-img",
-        { opacity: 0, y: 60, scale: 0.92 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1.4,
-          ease: "power3.out",
-          delay: 0.6,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 55%",
-          },
-        },
-      );
 
-      // ── 8. Continuous scroll parallax on inset ──
-      gsap.fromTo(
-        ".story-inset-img",
-        { yPercent: 0 },
-        {
-          yPercent: -15,
-          ease: "none",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        },
-      );
 
       // ── 9. Decorative line draw ──
       gsap.fromTo(
@@ -271,17 +224,7 @@ export default function StorySection() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#141312]/60 via-transparent to-[#141312]/20 pointer-events-none" />
           </div>
 
-          {/* Floating inset image (overlapping the boundary) */}
-          <div className="story-inset-img absolute -left-8 md:-left-16 bottom-16 md:bottom-24 z-20 w-[45%] max-w-[260px]">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-sm shadow-[0_30px_60px_rgba(0,0,0,0.4)] border border-white/10">
-              <img
-                src="/images/photo6.jpg"
-                alt="Luxury Chandelier"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
-            </div>
-          </div>
+
         </div>
       </div>
 
@@ -297,11 +240,13 @@ export default function StorySection() {
                 <div className="flex items-baseline gap-0.5">
                   <span
                     ref={(el) => {
-                      counterRefs.current[i] = el;
+                      if (!stat.isStatic) {
+                        counterRefs.current[i] = el;
+                      }
                     }}
-                    className="text-3xl md:text-5xl lg:text-6xl font-sans font-light text-white tracking-tight tabular-nums"
+                    className="text-2xl md:text-4xl lg:text-5xl font-sans font-light text-white tracking-tight tabular-nums"
                   >
-                    0
+                    {stat.isStatic ? stat.value : "0"}
                   </span>
                   {stat.suffix && (
                     <span className="text-xl md:text-3xl font-light text-brand-brass">
