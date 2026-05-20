@@ -33,23 +33,7 @@ export default function Footer() {
               Jaipur&rsquo;s definitive assembly of heritage clocks, raw brass chandeliers, and acoustic slate decor. Curated for spaces that demand profound materiality.
             </p>
             
-            {/* Newsletter CTA */}
-            <div className="mt-12 w-full max-w-sm">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-brand-ivory/40 font-bold block mb-4">Stay informed</span>
-              <form className="flex gap-0" onSubmit={(e) => e.preventDefault()}>
-                <input 
-                  type="email" 
-                  placeholder="Your email address"
-                  className="flex-1 bg-white/[0.06] border border-brand-ivory/10 border-r-0 rounded-l-full px-5 py-3 text-sm text-brand-ivory placeholder-brand-ivory/30 focus:outline-none focus:border-brand-brass/40 transition-colors"
-                />
-                <button 
-                  type="submit"
-                  className="px-6 py-3 bg-brand-brass text-brand-charcoal text-[10px] uppercase tracking-widest font-bold rounded-r-full hover:bg-brand-brass/90 transition-colors active:scale-[0.98]"
-                >
-                  Join
-                </button>
-              </form>
-            </div>
+
           </div>
 
           {/* Right side: Menus */}
