@@ -1,5 +1,6 @@
 import React from "react";
 import { Mail, PhoneCall } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -17,6 +18,14 @@ export default function Footer() {
           
           {/* Left side: Brand Identity */}
           <div className="lg:col-span-5 flex flex-col items-start">
+            <div className="relative w-16 h-16 md:w-20 md:h-20 mb-6 shrink-0">
+              <Image 
+                src="/images/home-darbaar-logo.png" 
+                alt="The Home Darbaar Logo" 
+                fill
+                className="object-contain"
+              />
+            </div>
             <h2 className="font-serif text-5xl md:text-6xl font-bold tracking-tight text-brand-ivory leading-none">
               THE HOME <br/> DARBAAR
             </h2>
