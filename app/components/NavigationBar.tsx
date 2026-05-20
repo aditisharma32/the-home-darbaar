@@ -22,17 +22,17 @@ export default function NavigationBar() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 120, damping: 20, delay: 0.1 }}
-        className={`fixed top-6 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-5xl rounded-full px-6 py-4 flex items-center justify-between transition-all duration-500 ${
+        className={`fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-5xl rounded-full px-4 py-3 md:px-6 md:py-4 flex items-center justify-between transition-all duration-500 ${
           isScrolled 
             ? "bg-[#FAF6F0]/90 backdrop-blur-xl border border-brand-charcoal/5 shadow-[0_8px_32px_rgba(0,0,0,0.05)]" 
             : "luxury-glass shadow-lg"
         }`}
       >
-        <a href="#" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-full bg-brand-charcoal flex items-center justify-center border border-brand-brass/40 transition-transform duration-500 group-hover:scale-[1.04]">
+        <a href="#" className="flex items-center gap-2 group shrink-0">
+          <div className="w-8 h-8 rounded-full bg-brand-charcoal flex items-center justify-center border border-brand-brass/40 transition-transform duration-500 group-hover:scale-[1.04] shrink-0">
             <span className="font-serif text-[13px] font-bold text-brand-brass">D</span>
           </div>
-          <span className="font-serif text-md md:text-lg font-bold tracking-widest text-brand-charcoal">
+          <span className="font-serif text-xs sm:text-sm md:text-base lg:text-lg font-bold tracking-[0.18em] text-brand-charcoal whitespace-nowrap">
             THE HOME DARBAAR
           </span>
         </a>
