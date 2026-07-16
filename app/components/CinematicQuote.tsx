@@ -64,8 +64,8 @@ export default function CinematicQuote() {
         ease: "power2.out",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 70%", 
-          end: "center 45%", 
+          start: "top 85%", 
+          end: "bottom 55%", 
           scrub: 1.5,
         }
       }
@@ -76,13 +76,13 @@ export default function CinematicQuote() {
   return (
     <section 
       ref={containerRef}
-      className="py-32 md:py-48 bg-[#FAF6F0] flex items-center justify-center px-6 md:px-16 relative"
+      className="py-24 md:py-48 bg-[#FAF6F0] flex items-center justify-center px-6 md:px-16 relative"
     >
       <div className="max-w-[1400px] mx-auto w-full flex flex-col items-center text-center z-10">
-        <div className="w-16 h-[1px] bg-brand-brass/40 mb-12 mx-auto" />
+        <div className="w-16 h-[1px] bg-brand-brass/40 mb-8 md:mb-12 mx-auto" />
         <h2 
           ref={textRef}
-          className="font-serif text-3xl md:text-5xl lg:text-6xl text-brand-charcoal leading-[1.3] md:leading-[1.4] font-medium tracking-tight flex flex-wrap justify-center gap-x-[0.25em] gap-y-2 md:gap-y-4 max-w-4xl"
+          className="font-serif text-2xl xs:text-3xl md:text-5xl lg:text-6xl text-brand-charcoal leading-[1.3] md:leading-[1.4] font-medium tracking-tight flex flex-wrap justify-center gap-x-[0.25em] gap-y-2 md:gap-y-4 max-w-4xl"
         >
           {wordsList.map((word, i) => (
             <span 
@@ -93,7 +93,7 @@ export default function CinematicQuote() {
             </span>
           ))}
         </h2>
-        <div className="mt-16 flex items-center justify-center gap-4">
+        <div className="mt-10 md:mt-16 flex items-center justify-center gap-4">
           <span className="w-1.5 h-1.5 rounded-full bg-brand-brass" />
           <span className="text-[11px] uppercase tracking-[0.2em] text-brand-charcoal/60 font-bold">The Home Darbaar Manifesto</span>
         </div>

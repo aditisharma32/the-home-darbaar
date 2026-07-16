@@ -139,7 +139,7 @@ export default function StorySection() {
       {/* ─── MAIN SPLIT LAYOUT ─── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[85vh] lg:min-h-screen">
         {/* ── LEFT: Text Content ── */}
-        <div className="relative bg-[#FAF6F0] flex flex-col justify-center px-6 md:px-12 lg:px-16 xl:px-24 py-24 md:py-32 lg:py-20 z-10">
+        <div className="relative bg-[#FAF6F0] flex flex-col justify-center px-6 md:px-12 lg:px-16 xl:px-24 py-20 md:py-32 lg:py-20 z-10">
           <div className="story-text-container max-w-[540px]">
             {/* Eyebrow */}
             <div className="story-fade-elem flex items-center gap-4 mb-10">
@@ -151,7 +151,7 @@ export default function StorySection() {
             </div>
 
             {/* Title with masked reveal */}
-            <h2 className="font-sans font-light text-[2.5rem] md:text-5xl lg:text-[3.5rem] xl:text-[4rem] leading-[1.08] tracking-tight mb-10 text-brand-charcoal">
+            <h2 className="font-sans font-light text-[2rem] xs:text-[2.5rem] md:text-5xl lg:text-[3.5rem] xl:text-[4rem] leading-[1.08] tracking-tight mb-10 text-brand-charcoal">
               <span className="block overflow-hidden pb-2">
                 <span className="story-title-line block">
                   Bridging heritage
@@ -231,11 +231,11 @@ export default function StorySection() {
       {/* ─── STATS BAR ─── */}
       <div className="story-stats relative w-full bg-[#141312] border-t border-white/[0.06]">
         <div className="max-w-screen-2xl mx-auto px-6 md:px-12 lg:px-24">
-          <div className="grid grid-cols-3 divide-x divide-white/[0.08]">
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.08]">
             {stats.map((stat, i) => (
               <div
                 key={i}
-                className="story-stat-item flex flex-col items-center justify-center py-10 md:py-14 text-center"
+                className="story-stat-item flex flex-col items-center justify-center py-8 md:py-14 text-center"
               >
                 <div className="flex items-baseline gap-0.5">
                   <span
