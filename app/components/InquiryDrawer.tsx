@@ -23,7 +23,6 @@ export default function InquiryDrawer({ isOpen, onClose, product }: InquiryDrawe
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (product) {
@@ -49,29 +48,31 @@ export default function InquiryDrawer({ isOpen, onClose, product }: InquiryDrawe
     e.preventDefault();
     if (!name.trim()) return;
 
-    setIsLoading(true);
+    setIsSuccess(true);
 
-    // Simulate luxury submission timing
-    setTimeout(() => {
-      setIsLoading(false);
-      setIsSuccess(true);
-      
-      // Construct WhatsApp URL
-      const phoneNumber = "917740944515";
-      const encodedText = encodeURIComponent(
-        `*The Home Darbaar - Inquiry*\n\n` +
-        `*Customer Name:* ${name}\n` +
-        `*Product:* ${product?.name}\n` +
-        `*Category:* ${product?.category}\n` +
-        `*Origin:* ${product?.origin}\n\n` +
-        `*Message:* ${message}`
-      );
-      
-      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
-      
-      // Open in a new tab
+    // Construct WhatsApp URL
+    const phoneNumber = "917740944515";
+    const encodedText = encodeURIComponent(
+      `*The Home Darbaar - Inquiry*\n\n` +
+      `*Customer Name:* ${name}\n` +
+      `*Product:* ${product?.name}\n` +
+      `*Category:* ${product?.category}\n` +
+      `*Origin:* ${product?.origin}\n\n` +
+      `*Message:* ${message}`
+    );
+    
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+    
+    // On mobile, redirect active tab to bypass pop-up blockers; on desktop, open new tab
+    const isMobileDevice = typeof window !== "undefined" && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+
+    if (isMobileDevice) {
+      window.location.href = whatsappUrl;
+    } else {
       window.open(whatsappUrl, "_blank");
-    }, 1200);
+    }
   };
 
   return (
@@ -178,17 +179,10 @@ export default function InquiryDrawer({ isOpen, onClose, product }: InquiryDrawe
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    disabled={isLoading}
                     className="w-full flex h-14 items-center justify-center gap-3 rounded-full bg-brand-charcoal hover:bg-brand-dark disabled:bg-brand-charcoal/50 text-brand-ivory font-medium transition-all transform hover:scale-[1.01] active:scale-[0.98] shadow-lg cursor-pointer"
                   >
-                    {isLoading ? (
-                      <span className="animate-pulse">Sending...</span>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4" />
-                        <span>Send via WhatsApp</span>
-                      </>
-                    )}
+                    <Send className="w-4 h-4" />
+                    <span>Send via WhatsApp</span>
                   </button>
                 </form>
               ) : (
