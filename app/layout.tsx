@@ -24,6 +24,22 @@ export const metadata: Metadata = {
     "Tabletop Fountains"
   ],
   authors: [{ name: "The Home Darbaar" }],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: "The Home Darbaar | Luxury Heritage Home Decor",
+    description: "Jaipur's premier boutique for exquisite home decor, luxury lighting, and traditional handicraft innovations. Brass chandeliers, gear clocks, water fountains & more.",
+    siteName: "The Home Darbaar",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Home Darbaar | Luxury Heritage Home Decor",
+    description: "Jaipur's premier boutique for exquisite home decor, luxury lighting, and traditional handicraft innovations.",
+  },
 };
 
 export const viewport: Viewport = {

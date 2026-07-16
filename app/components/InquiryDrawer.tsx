@@ -57,7 +57,7 @@ export default function InquiryDrawer({ isOpen, onClose, product }: InquiryDrawe
       setIsSuccess(true);
       
       // Construct WhatsApp URL
-      const phoneNumber = "918044010997";
+      const phoneNumber = "917740944515";
       const encodedText = encodeURIComponent(
         `*The Home Darbaar - Inquiry*\n\n` +
         `*Customer Name:* ${name}\n` +

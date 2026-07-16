@@ -28,8 +28,9 @@ Use this structured taxonomy to populate your e-commerce database, product detai
 
 ## 4. Direct Customer Reviews (For "Testimonials" Page Section)
 These real, highly-rated reviews from local directories can be showcased on the homepage to instantly build credibility:
-- ⭐⭐⭐⭐⭐ Somesh: "I bought this amazing handcrafted Vishnu Shank and that too at an amazing price. Amazing Store in Jagatpura, must visit!"
-- ⭐⭐⭐⭐⭐ Bhoopendra: "Polite professionals who ensure timely delivery of high-quality, environment-friendly products. Excellent overall customer experience!"
+- ⭐⭐⭐⭐⭐ Vayun Bandi: "I bought this beautiful reindeer décor set from Chiranshu’s home décor shop and absolutely loved it. The detailing, gold finish, and crystal spheres make it look truly premium. Chiranshu was very helpful and guided me perfectly. Highly recommended for unique and elegant home décor pieces!"
+- ⭐⭐⭐⭐⭐ Sumitray Mundra: "Greate products"
+- ⭐⭐⭐⭐⭐ Tanvika Gupta: "Purchased a beautiful clock for my home from here.Beautiful collection of home decor items. The designs are unique and the quality is really good. The store has a great variety and the staff was very helpful. Loved the overall experience..will make sure to visit again!✨"
 
 ## 5. Website Interactive Architecture Design
 To optimize your user experience (UX) and drive conversions, structure your development blueprint around these interactive elements:

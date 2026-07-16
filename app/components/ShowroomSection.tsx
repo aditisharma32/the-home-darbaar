@@ -112,7 +112,7 @@ export default function ShowroomSection() {
               <div>
                 <span className="text-[10px] uppercase tracking-[0.25em] text-brand-charcoal/40 font-bold block mb-1.5">Contact & Timings</span>
                 <span className="text-sm font-medium text-brand-charcoal block hover:text-brand-brass transition-colors duration-300">
-                  <a href="tel:+918044010997">+91 80440 10997</a>
+                  <a href="tel:+917740944515">+91 77409 44515</a>
                 </span>
                 <span className="text-xs text-brand-charcoal/40 mt-1.5 block">Open 10 AM — 10 PM, all days</span>
               </div>

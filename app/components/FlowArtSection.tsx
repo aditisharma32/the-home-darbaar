@@ -2,67 +2,125 @@
 
 import React from 'react';
 import FlowArt, { FlowSection } from './ui/story-scroll';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 
-const collections = [
+interface CollectionItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  desc: string;
+  img: string;
+  bg: string;
+  text: string;
+  accent: string;
+  divider: string;
+  price: string;
+  origin: string;
+  category: string;
+}
+
+const collections: CollectionItem[] = [
   {
     id: "01",
     title: "Chandelier Jhoomars",
     subtitle: "Antique Finish & Turkish Mosaic",
     desc: "Solid brass body with elegant Turkish-style design crafted in colorful mosaic glass. Emits a warm, welcoming light.",
-    img: "/images/story-chandelier.png",
+    img: "/images/story-chandelier.webp",
     bg: "#141312",
     text: "#FAF6F0",
     accent: "#c5a880",
-    divider: "border-white/10"
+    divider: "border-white/10",
+    price: "₹10,000 / Piece",
+    origin: "Jaipur Brass Smiths",
+    category: "Lighting"
   },
   {
     id: "02",
     title: "Gear Wall Watches",
     subtitle: "27-inch Kinetic Precision",
-    desc: "Premium black and gold design with fully active, exposed moving gears. Perfectly styled for main living halls.",
-    img: "/images/story-clock.png",
+    desc: "Premium black and gold design with fully active, exposed moving gears. Perfectly styled for main living halls, executive offices, and lobbies.",
+    img: "/images/story-clock.webp",
     bg: "#FAF6F0",
     text: "#141312",
     accent: "#a75d5d",
-    divider: "border-brand-charcoal/10"
+    divider: "border-brand-charcoal/10",
+    price: "₹5,000 / Piece",
+    origin: "Precision Horology Guild",
+    category: "Timepieces"
   },
   {
     id: "03",
     title: "Sacred Idols",
     subtitle: "Premium Poly-Resin",
-    desc: "10-inch Ganesh statues with polished white and gold finish. Handcrafted for serene sanctuaries.",
-    img: "/images/ganesha-statue-luxury.png",
+    desc: "10-inch Ganesh statues with polished white and gold finish. Weather-resistant and handcrafted. Ideal for Diwali, housewarmings, and corporate gifting.",
+    img: "/images/ganesha-statue-luxury.webp",
     bg: "#a75d5d",
     text: "#FAF6F0",
     accent: "#FAF6F0",
-    divider: "border-white/20"
+    divider: "border-white/20",
+    price: "₹2,000 / Piece",
+    origin: "Jaipur Sacred Sculptors",
+    category: "Sacred"
   },
   {
     id: "04",
     title: "Water Fountains",
     subtitle: "Cascading Flow",
-    desc: "High-durability resin fountains featuring peaceful cascading water flow and soft LED lighting.",
-    img: "/images/buddha-water-fountain.png",
+    desc: "High-durability fiber-reinforced polymer/resin fountains featuring peaceful cascading water flow, tabletop design, and soft LED lighting.",
+    img: "/images/buddha-water-fountain.webp",
     bg: "#354133",
     text: "#FAF6F0",
     accent: "#c5a880",
-    divider: "border-white/20"
+    divider: "border-white/20",
+    price: "Get Latest Price",
+    origin: "Jaipur Stone Guild",
+    category: "Fountains"
   },
   {
     id: "05",
     title: "Bespoke Lighting",
     subtitle: "Custom Hanging Lamps",
     desc: "Custom metal alloys and multi-finish options. Accent lighting solutions for modern and traditional homes.",
-    img: "/images/story-decor.png",
+    img: "/images/story-decor.webp",
     bg: "#c5a880",
     text: "#141312",
     accent: "#141312",
-    divider: "border-brand-charcoal/20"
+    divider: "border-brand-charcoal/20",
+    price: "Get Latest Price",
+    origin: "Jaipur Lamp Artisans",
+    category: "Lighting"
   }
 ];
 
-export default function FlowArtSection() {
+interface FlowArtSectionProps {
+  onInquire?: (product: {
+    id: string;
+    name: string;
+    category: string;
+    price: string;
+    description: string;
+    origin: string;
+    visualPattern: string;
+    image?: string;
+  }) => void;
+}
+
+export default function FlowArtSection({ onInquire }: FlowArtSectionProps) {
+  const handleInquire = (item: CollectionItem) => {
+    if (onInquire) {
+      onInquire({
+        id: item.id,
+        name: item.title,
+        category: item.category,
+        price: item.price,
+        description: item.desc,
+        origin: item.origin,
+        visualPattern: "",
+        image: item.img,
+      });
+    }
+  };
+
   return (
     <FlowArt aria-label="The Home Darbaar Curated Edit">
       {collections.map((item, index) => {
@@ -117,37 +175,49 @@ export default function FlowArtSection() {
                   {item.subtitle}
                 </span>
 
-                <h2 className="font-serif font-light text-[clamp(2.2rem,5.5vw,4.5rem)] leading-[1.05] tracking-tight uppercase mb-6">
+                <h2 className="font-serif font-light text-[clamp(2.2rem,5.5vw,4.5rem)] leading-[1.05] tracking-tight uppercase mb-4">
                   {item.title}
                 </h2>
+
+                {/* Price display */}
+                <div className="mb-6">
+                  <span 
+                    className="text-sm md:text-base font-semibold"
+                    style={{ color: item.accent }}
+                  >
+                    {item.price}
+                  </span>
+                </div>
 
                 <p className="text-sm md:text-base leading-relaxed opacity-75 max-w-[45ch] font-sans font-light">
                   {item.desc}
                 </p>
 
-                {/* Alternating CTA */}
-                <div className="pt-8">
-                  {index === collections.length - 1 ? (
-                    <a
-                      href="#spotlight"
-                      className="group inline-flex items-center justify-center gap-4 rounded-full bg-[#141312] text-[#faf6f0] px-8 py-4 text-xs font-bold uppercase tracking-widest transition-all hover:bg-black hover:scale-105 active:scale-95 shadow-lg w-fit"
-                    >
-                      <span>Inquire & Curate</span>
-                      <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center transition-transform group-hover:translate-x-1">
-                        <ArrowRight className="w-3 h-3 text-[#c5a880]" />
-                      </div>
-                    </a>
-                  ) : (
-                    <a 
-                      href="#spotlight" 
-                      className="group inline-flex items-center gap-3 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold transition-all w-fit"
-                    >
-                      Explore Lookbook
-                      <div className="w-6 h-6 rounded-full border border-current flex items-center justify-center transition-transform group-hover:translate-x-1 duration-300">
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </div>
-                    </a>
-                  )}
+                {/* CTA Buttons */}
+                <div className="pt-8 flex flex-wrap items-center gap-4">
+                  {/* Inquire via WhatsApp button */}
+                  <button
+                    onClick={() => handleInquire(item)}
+                    className={`group inline-flex items-center justify-center gap-3 rounded-full px-8 py-4 text-xs font-bold uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-lg w-fit cursor-pointer ${
+                      isDark 
+                        ? 'bg-white/10 text-white border border-white/20 hover:bg-white/20' 
+                        : 'bg-brand-charcoal text-brand-ivory hover:bg-brand-dark'
+                    }`}
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>{item.price === "Get Latest Price" ? "Get Price on WhatsApp" : "Inquire on WhatsApp"}</span>
+                  </button>
+
+                  {/* Browse link */}
+                  <a 
+                    href="#spotlight" 
+                    className="group inline-flex items-center gap-3 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold transition-all w-fit opacity-60 hover:opacity-100"
+                  >
+                    View Gallery
+                    <div className="w-6 h-6 rounded-full border border-current flex items-center justify-center transition-transform group-hover:translate-x-1 duration-300">
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>

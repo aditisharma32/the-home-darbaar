@@ -15,25 +15,25 @@ import { useEffect, useMemo, useRef, useState } from "react";
  */
 export const DEFAULT_GRID_IMAGES: readonly string[] = [
   // Row 1
-  "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1615529182904-14819c35db37?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop",
+  "/images/hero-chandelier.webp",
+  "/images/hero-clock.webp",
+  "/images/hero-heritage.webp",
   // Row 2
-  "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
+  "/images/ganesha-statue-luxury.webp",
+  "/images/buddha-water-fountain.webp",
+  "/images/story-chandelier.webp",
   // Row 3
-  "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop",
+  "/images/story-clock.webp",
+  "/images/story-decor.webp",
+  "/images/photo5.webp",
   // Row 4
-  "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop",
+  "/images/photo1.webp",
+  "/images/photo2.webp",
+  "/images/photo3.webp",
   // Row 5
-  "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=800&auto=format&fit=crop",
+  "/images/photo4.webp",
+  "/images/photo6.jpg",
+  "/images/hero-door-image.jpg",
 ];
 
 const easeIntoFocus = cubicBezier(0.22, 1, 0.36, 1);

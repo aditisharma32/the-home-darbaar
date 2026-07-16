@@ -192,9 +192,9 @@ export default function StorySection() {
               <div className="flex items-center gap-4 group cursor-default">
                 <div className="overflow-hidden rounded-full w-12 h-12 border border-brand-charcoal/8 shadow-sm">
                   <img
-                    src="https://picsum.photos/seed/founderportrait/200/200"
+                    src="/images/chiranshu-founder.png"
                     alt="Chiranshu Khandelwal"
-                    className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 grayscale-[20%]"
+                    className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
                   />
                 </div>
                 <div>
@@ -215,7 +215,7 @@ export default function StorySection() {
           {/* Main image with horizontal wipe */}
           <div className="story-hero-img absolute inset-0 overflow-hidden">
             <img
-              src="/images/photo5.jpeg"
+              src="/images/photo5.webp"
               alt="Jaipur Heritage Decor"
               className="absolute inset-0 w-full h-full object-cover"
             />

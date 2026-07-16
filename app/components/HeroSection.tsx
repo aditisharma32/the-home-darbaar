@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -24,7 +25,7 @@ export default function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative h-[250vh] w-full bg-[#FAF6F0]"
+      className="relative h-[150vh] w-full bg-[#FAF6F0]"
     >
       {/* STICKY WRAPPER: Locks the layout to the screen while scrolling happens */}
       <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-center overflow-hidden pt-24 pb-4 md:pt-32 md:pb-16">
@@ -119,10 +120,12 @@ export default function HeroSection() {
                 style={{ scale: zoomInside, z: 0 }}
                 className="absolute inset-0 z-0 will-change-transform"
               >
-                <img
+                <Image
                   src="/images/hero-door-image2.jpg"
                   alt="The Home Darbaar Turkish Chandelier Logo"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90" />
 

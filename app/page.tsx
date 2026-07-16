@@ -8,11 +8,12 @@ import StorySection from "./components/StorySection";
 import FlowArtSection from "./components/FlowArtSection";
 import GallerySection from "./components/GallerySection";
 import CinematicQuote from "./components/CinematicQuote";
+import TestimonialsSection from "./components/TestimonialsSection";
 import ShowroomSection from "./components/ShowroomSection";
 import Footer from "./components/Footer";
 import InquiryDrawer from "./components/InquiryDrawer";
 
-// Define Product interface shared by Spotlight and Drawer
+// Define Product interface shared by FlowArt and Drawer
 export interface Product {
   id: string;
   name: string;
@@ -42,8 +43,9 @@ export default function Home() {
         <MarqueeSection />
         <StorySection />
         <CinematicQuote />
-        <FlowArtSection />
+        <FlowArtSection onInquire={handleOpenDrawer} />
         <GallerySection />
+        <TestimonialsSection />
         <ShowroomSection />
       </main>
 
