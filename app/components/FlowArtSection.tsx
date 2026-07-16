@@ -135,7 +135,7 @@ export default function FlowArtSection({ onInquire }: FlowArtSectionProps) {
             className="font-sans"
           >
             {/* Header row */}
-            <div className="flex items-center justify-between">
+            <div className="hidden md:flex items-center justify-between">
               <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.25em]" style={{ color: item.accent }}>
                 {item.id} — The Collection
               </p>
@@ -144,14 +144,14 @@ export default function FlowArtSection({ onInquire }: FlowArtSectionProps) {
               </span>
             </div>
             
-            <hr className={`my-[1.5vw] border-none border-t ${item.divider}`} />
+            <hr className={`hidden md:block my-[1.5vw] border-none border-t ${item.divider}`} />
 
             {/* Asymmetrical content body */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center my-auto">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center my-8 md:my-auto">
               {/* IMAGE (Double-Bezel concentric design) */}
               <div className={`md:col-span-5 w-full ${isEven ? 'md:order-1' : 'md:order-2'}`}>
                 <div 
-                  className={`w-full max-w-[420px] mx-auto rounded-[2rem] ${
+                  className={`w-full max-w-[300px] xs:max-w-[340px] md:max-w-[420px] mx-auto rounded-[2rem] ${
                     isDark 
                       ? 'bg-white/[0.04] border border-white/[0.07] p-2.5' 
                       : 'bg-black/[0.03] border border-black/[0.06] p-2.5'
@@ -222,10 +222,10 @@ export default function FlowArtSection({ onInquire }: FlowArtSectionProps) {
               </div>
             </div>
 
-            <hr className={`my-[1.5vw] border-none border-t ${item.divider}`} />
+            <hr className={`hidden md:block my-[1.5vw] border-none border-t ${item.divider}`} />
 
             {/* Footer row */}
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-[9px] tracking-widest uppercase opacity-40">
+            <div className="hidden md:flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-[9px] tracking-widest uppercase opacity-40">
               <p>The Home Darbaar — Jagatpura, Jaipur</p>
               <p>Luxury Artisanal Curation</p>
             </div>
