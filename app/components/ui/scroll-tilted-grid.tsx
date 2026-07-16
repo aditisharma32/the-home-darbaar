@@ -269,7 +269,7 @@ export function ScrollTiltedGrid({
   );
 
   const gridClass = [
-    "mx-auto mt-[10vh] mb-[10vh] grid w-full grid-cols-1 md:grid-cols-3 px-6 py-[10vh]",
+    "mx-auto mt-4 md:mt-[10vh] mb-4 md:mb-[10vh] grid w-full grid-cols-1 md:grid-cols-3 px-6 py-4 md:py-[10vh]",
     MAX_WIDTH_CLASS[maxWidth],
     GAP_CLASS[gap],
   ]

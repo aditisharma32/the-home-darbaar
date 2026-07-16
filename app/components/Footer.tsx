@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#141312] text-brand-ivory pt-32 pb-8 relative overflow-hidden font-sans border-t border-brand-ivory/5">
+    <footer className="bg-[#141312] text-brand-ivory pt-16 md:pt-32 pb-8 relative overflow-hidden font-sans border-t border-brand-ivory/5">
       
       {/* Giant Background Text watermark */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] md:-translate-y-[45%] pointer-events-none w-full flex justify-center overflow-hidden z-0">
@@ -14,7 +14,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-24 md:mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-12 md:mb-32">
           
           {/* Left side: Brand Identity */}
           <div className="lg:col-span-5 flex flex-col items-start">
@@ -37,7 +37,7 @@ export default function Footer() {
           </div>
 
           {/* Right side: Menus */}
-          <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12 lg:gap-8 pt-4 md:pt-6">
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-10 md:gap-8 pt-4 md:pt-6">
             
             {/* Col 1 */}
             <div className="flex flex-col gap-6">

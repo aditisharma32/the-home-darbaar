@@ -34,22 +34,28 @@ export default function ShowroomSection() {
   useGSAP(() => {
     if (!containerRef.current) return;
     
-    // Reveal text and form with a beautiful stagger
-    gsap.fromTo(
-      ".reveal-item",
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 70%",
+    const mm = gsap.matchMedia();
+    
+    mm.add("(min-width: 1024px)", () => {
+      // Reveal text and form with a beautiful stagger
+      gsap.fromTo(
+        ".reveal-item",
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 70%",
+          }
         }
-      }
-    );
+      );
+    });
+
+    return () => mm.revert();
   }, { scope: containerRef });
 
   const handleShowroomSubmit = (e: React.FormEvent) => {
@@ -76,7 +82,7 @@ export default function ShowroomSection() {
     <section 
       ref={containerRef}
       id="showroom" 
-      className="py-32 md:py-48 bg-[#FAF6F0] text-brand-charcoal relative overflow-hidden"
+      className="py-20 md:py-48 bg-[#FAF6F0] text-brand-charcoal relative overflow-hidden"
     >
       {/* Decorative subtle background aura */}
       <div className="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full bg-brand-brass/5 blur-[120px] pointer-events-none" />
@@ -102,7 +108,7 @@ export default function ShowroomSection() {
             </p>
           </div>
 
-          <div className="space-y-10 mt-16 lg:mt-24 border-t border-brand-charcoal/10 pt-12">
+          <div className="space-y-10 mt-10 lg:mt-24 border-t border-brand-charcoal/10 pt-12">
             <div className="reveal-item flex gap-6 group">
               <MapPin className="w-5 h-5 text-brand-brass shrink-0 mt-1" />
               <div>
@@ -129,7 +135,7 @@ export default function ShowroomSection() {
 
         {/* Right Column: High-End Glassmorphic Form */}
         <div className="lg:col-span-7 reveal-item">
-          <div className="bg-white/40 backdrop-blur-md p-10 md:p-16 rounded-3xl shadow-[0_25px_50px_rgba(20,19,18,0.03)] border border-brand-charcoal/10 relative h-full flex flex-col justify-center">
+          <div className="bg-white/40 backdrop-blur-md p-6 md:p-16 rounded-3xl shadow-[0_25px_50px_rgba(20,19,18,0.03)] border border-brand-charcoal/10 relative h-full flex flex-col justify-center">
             
             <h3 className="font-sans text-3xl md:text-4xl font-light text-brand-charcoal mb-4">Arrange a Viewing</h3>
             <p className="text-sm text-brand-charcoal/50 mb-12 max-w-[45ch] leading-relaxed">
@@ -147,8 +153,8 @@ export default function ShowroomSection() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleShowroomSubmit} className="space-y-12" noValidate>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <form onSubmit={handleShowroomSubmit} className="space-y-8 md:space-y-12" noValidate>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                   <div className="relative group">
                     <input 
                       type="text" 

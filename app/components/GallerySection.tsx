@@ -27,7 +27,7 @@ const GALLERY_IMAGES = [
 
 export default function GallerySection() {
   return (
-    <section id="spotlight" className="relative min-h-screen overflow-x-hidden bg-[#FAF6F0] py-24 md:py-32">
+    <section id="spotlight" className="relative min-h-screen overflow-x-hidden bg-[#FAF6F0] py-12 md:py-32">
       <section className="relative flex flex-col items-center justify-center px-6 text-center z-20">
         <div className="flex items-center gap-3 text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-brand-charcoal/60 font-bold mb-4 md:mb-6">
           <span className="w-1.5 h-1.5 rounded-full bg-brand-brass" />

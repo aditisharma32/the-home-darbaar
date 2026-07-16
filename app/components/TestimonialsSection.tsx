@@ -40,27 +40,33 @@ export default function TestimonialsSection() {
   useGSAP(() => {
     if (!containerRef.current) return;
 
-    gsap.fromTo(
-      ".testimonial-reveal",
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 75%",
-        },
-      }
-    );
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px)", () => {
+      gsap.fromTo(
+        ".testimonial-reveal",
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 75%",
+          },
+        }
+      );
+    });
+
+    return () => mm.revert();
   }, { scope: containerRef });
 
   return (
     <section
       ref={containerRef}
-      className="py-24 md:py-32 bg-[#FAF6F0] relative overflow-hidden"
+      className="py-16 md:py-32 bg-[#FAF6F0] relative overflow-hidden"
     >
       {/* Decorative background */}
       <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-brand-brass/5 blur-[100px] pointer-events-none" />
@@ -83,7 +89,7 @@ export default function TestimonialsSection() {
           {testimonials.map((t, i) => (
             <div
               key={i}
-              className="testimonial-reveal bg-white/50 backdrop-blur-sm border border-brand-charcoal/8 rounded-3xl p-8 md:p-10 relative overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.04)] hover:-translate-y-1 group"
+              className="testimonial-reveal bg-white/50 backdrop-blur-sm border border-brand-charcoal/8 rounded-3xl p-6 md:p-10 relative overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.04)] hover:-translate-y-1 group"
             >
               {/* Decorative accent */}
               <div className="absolute top-0 right-0 w-20 h-20 bg-brand-brass/5 rounded-bl-full pointer-events-none" />
@@ -122,7 +128,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Bottom accent */}
-        <div className="testimonial-reveal flex items-center justify-center gap-4 mt-16">
+        <div className="testimonial-reveal flex items-center justify-center gap-4 mt-10 md:mt-16">
           <div className="w-16 h-[1px] bg-brand-brass/30" />
           <span className="text-[10px] uppercase tracking-[0.2em] text-brand-charcoal/40 font-bold">
             Verified Google Reviews
