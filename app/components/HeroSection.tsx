@@ -121,9 +121,10 @@ export default function HeroSection() {
                 className="absolute inset-0 z-0 will-change-transform"
               >
                 <Image
-                  src="/images/hero-door-image2.jpg"
+                  src="/images/Gate.webp"
                   alt="The Home Darbaar Turkish Chandelier Logo"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover"
                   priority
                 />

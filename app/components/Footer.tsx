@@ -97,10 +97,6 @@ export default function Footer() {
           <div className="text-brand-ivory/40">
             &copy; {new Date().getFullYear()} The Home Darbaar. All Rights Reserved
           </div>
-          <div className="text-brand-ivory/30 flex items-center gap-2">
-            <span>GSTIN:</span>
-            <span className="text-brand-ivory/50 font-medium">08JUYPK0843L3ZN</span>
-          </div>
           <div className="text-brand-ivory/40">
             Handcrafted in Jaipur with Heritage Integrity
           </div>

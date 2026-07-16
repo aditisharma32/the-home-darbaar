@@ -48,6 +48,7 @@ export interface FlowArtProps {
   children: React.ReactNode;
   className?: string;
   'aria-label'?: string;
+  id?: string;
 }
 
 const childCount = (children: React.ReactNode) => React.Children.count(children);
@@ -56,6 +57,7 @@ const FlowArt: React.FC<FlowArtProps> = ({
   children,
   className,
   'aria-label': ariaLabel = 'Story scroll',
+  id,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -125,6 +127,7 @@ const FlowArt: React.FC<FlowArtProps> = ({
   return (
     <div
       ref={containerRef}
+      id={id}
       aria-label={ariaLabel}
       className={cx('w-full overflow-x-hidden', className)}
     >

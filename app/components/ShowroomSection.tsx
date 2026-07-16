@@ -55,6 +55,13 @@ export default function ShowroomSection() {
   const handleShowroomSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
+
+    const subject = encodeURIComponent(`Showroom Viewing Request from ${showroomName}`);
+    const body = encodeURIComponent(
+      `Name: ${showroomName}\nContact Info: ${showroomEmail}\n\nMessage:\n${showroomMsg}`
+    );
+    window.location.href = `mailto:thehomedarbaar@gmail.com?subject=${subject}&body=${body}`;
+
     setFormSubmitted(true);
     setTimeout(() => {
       setFormSubmitted(false);

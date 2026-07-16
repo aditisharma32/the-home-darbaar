@@ -87,10 +87,12 @@ function Tile({
   src,
   side,
   config,
+  customAspectRatio,
 }: {
   src: string;
   side: Side;
   config: TileConfig;
+  customAspectRatio?: string;
 }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress: p } = useScroll({
@@ -100,7 +102,8 @@ function Tile({
 
   const reduce = useReducedMotion();
   const sign = side === "L" ? -1 : side === "R" ? 1 : 0;
-  const { aspectRatio, perspective, maxTilt, maxBlur, rounded } = config;
+  const { aspectRatio: defaultAspectRatio, perspective, maxTilt, maxBlur, rounded } = config;
+  const aspectRatio = customAspectRatio || defaultAspectRatio;
 
   const blur     = useTransform(p, [0, 0.5, 1], [maxBlur, 0, maxBlur], { ease: focusEase });
   const bright   = useTransform(p, [0, 0.5, 1], [0, 1, 0],             { ease: focusEase });
@@ -168,9 +171,11 @@ function Tile({
   );
 }
 
+export type GridItem = string | { src: string; aspectRatio?: string };
+
 export type ScrollTiltedGridProps = {
   /** Image URLs to render. Falls back to {@link DEFAULT_GRID_IMAGES}. */
-  images?: readonly string[];
+  images?: readonly GridItem[];
   /**
    * Cycle the source list and append more pairs as the user nears the bottom —
    * a perceptually infinite scroll. Default `false`.
@@ -266,14 +271,19 @@ export function ScrollTiltedGrid({
       className={["relative w-full", className].filter(Boolean).join(" ")}
     >
       <div className={gridClass}>
-        {items.map((src, i) => (
-          <Tile
-            key={`${i}-${src}`}
-            src={src}
-            side={i % 3 === 0 ? "L" : i % 3 === 1 ? "C" : "R"}
-            config={config}
-          />
-        ))}
+        {items.map((item, i) => {
+          const src = typeof item === "string" ? item : item.src;
+          const customAspectRatio = typeof item === "string" ? undefined : item.aspectRatio;
+          return (
+            <Tile
+              key={`${i}-${src}`}
+              src={src}
+              side={i % 3 === 0 ? "L" : i % 3 === 1 ? "C" : "R"}
+              config={config}
+              customAspectRatio={customAspectRatio}
+            />
+          );
+        })}
       </div>
       {loop ? (
         <div ref={sentinelRef} aria-hidden className="h-px w-full" />

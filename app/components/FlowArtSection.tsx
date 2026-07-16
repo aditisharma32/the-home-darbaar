@@ -122,7 +122,7 @@ export default function FlowArtSection({ onInquire }: FlowArtSectionProps) {
   };
 
   return (
-    <FlowArt aria-label="The Home Darbaar Curated Edit">
+    <FlowArt id="collections" aria-label="The Home Darbaar Curated Edit">
       {collections.map((item, index) => {
         const isEven = index % 2 === 0;
         const isDark = item.bg !== '#FAF6F0';
