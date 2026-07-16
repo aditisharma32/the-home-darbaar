@@ -101,6 +101,16 @@ function Tile({
   });
 
   const reduce = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  const shouldReduceMotion = reduce || isMobile;
   const sign = side === "L" ? -1 : side === "R" ? 1 : 0;
   const { aspectRatio: defaultAspectRatio, perspective, maxTilt, maxBlur, rounded } = config;
   const aspectRatio = customAspectRatio || defaultAspectRatio;
@@ -122,7 +132,7 @@ function Tile({
 
   const filter = useMotionTemplate`blur(${blur}px) brightness(${bright}) contrast(${contrast})`;
 
-  if (reduce) {
+  if (shouldReduceMotion) {
     return (
       <figure ref={ref} className="relative z-10 m-0">
         <div
