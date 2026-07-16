@@ -28,7 +28,7 @@ export default function HeroSection() {
       className="relative h-[150vh] w-full bg-[#FAF6F0]"
     >
       {/* STICKY WRAPPER: Locks the layout to the screen while scrolling happens */}
-      <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-center overflow-hidden pt-24 pb-4 md:pt-32 md:pb-16">
+      <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-center overflow-hidden pt-20 pb-2 md:pt-32 md:pb-16">
         {/* 1. ARCHITECTURAL EDITORIAL SPREAD */}
         <div className="w-full max-w-[1400px] mx-auto px-6 md:px-16 grid grid-cols-1 lg:grid-cols-12 gap-2 md:gap-12 lg:gap-8 items-center h-full">
           {/* Left Column: Typography */}
@@ -38,7 +38,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
               style={{ z: 0 }}
-              className="flex items-center gap-3 text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-brand-charcoal/60 font-bold mb-4 md:mb-6 will-change-transform"
+              className="flex items-center gap-3 text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-brand-charcoal/60 font-bold mb-2 md:mb-6 will-change-transform"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-brand-brass" />
               <span>Jagatpura, Jaipur</span>
@@ -50,7 +50,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.32, 0.72, 0, 1] }}
               style={{ z: 0 }}
-              className="font-serif text-[2.75rem] leading-[1] md:text-7xl lg:text-[6.5rem] font-medium tracking-tight md:leading-[1.05] text-brand-charcoal will-change-transform"
+              className="font-serif text-[2.3rem] xs:text-[2.75rem] leading-[1.05] md:text-7xl lg:text-[6.5rem] font-medium tracking-tight md:leading-[1.05] text-brand-charcoal will-change-transform"
             >
               The Home <br className="hidden md:block" />
               <span className="font-serif italic font-light text-brand-charcoal/80">
@@ -67,7 +67,7 @@ export default function HeroSection() {
                 ease: [0.32, 0.72, 0, 1],
               }}
               style={{ z: 0 }}
-              className="mt-4 md:mt-8 border-l-2 border-brand-brass/40 pl-4 md:pl-6 will-change-transform"
+              className="mt-3 md:mt-8 border-l-2 border-brand-brass/40 pl-4 md:pl-6 will-change-transform"
             >
               <p className="text-xs md:text-base text-brand-charcoal/70 leading-relaxed max-w-[55ch] font-sans">
                 Based in Jagatpura, Jaipur, we curate a premium collection of
@@ -83,7 +83,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5, ease: [0.32, 0.72, 0, 1] }}
               style={{ z: 0 }}
-              className="mt-6 md:mt-12 flex flex-wrap items-center gap-4 md:gap-6 will-change-transform"
+              className="mt-4 md:mt-12 flex flex-wrap items-center gap-3 md:gap-6 will-change-transform"
             >
               <a
                 href="#spotlight"
@@ -113,7 +113,7 @@ export default function HeroSection() {
               }}
               // Apply 3D perspective to the container and force GPU acceleration
               style={{ perspective: 1200, z: 0 }}
-              className="relative w-[90%] sm:w-[75%] md:w-full max-w-[320px] sm:max-w-[340px] lg:max-w-[460px] aspect-[1/1.28] md:aspect-[1/1.4] rounded-t-[250px] overflow-hidden shadow-2xl bg-brand-dark ring-1 ring-brand-charcoal/10 will-change-transform"
+              className="relative w-[75%] sm:w-[70%] md:w-full max-w-[200px] sm:max-w-[280px] lg:max-w-[460px] aspect-[1/1.2] md:aspect-[1/1.4] rounded-t-[180px] sm:rounded-t-[220px] md:rounded-t-[250px] overflow-hidden shadow-2xl bg-brand-dark ring-1 ring-brand-charcoal/10 will-change-transform"
             >
               {/* 1. The Inside (Revealed when doors open) */}
               <motion.div
@@ -151,7 +151,7 @@ export default function HeroSection() {
                 className="absolute top-0 left-0 w-1/2 h-full bg-[#1c1a18] border-r border-brand-brass/50 z-20 shadow-[10px_0_30px_rgba(0,0,0,0.5)] flex items-center justify-end pr-2 will-change-transform"
               >
                 {/* Door Carving Panel */}
-                <div className="w-[85%] h-[95%] border border-brand-brass/20 rounded-tl-[120px] rounded-bl-sm opacity-50" />
+                <div className="w-[85%] h-[95%] border border-brand-brass/20 rounded-tl-[80px] sm:rounded-tl-[100px] md:rounded-tl-[120px] rounded-bl-sm opacity-50" />
                 {/* Door Handle */}
                 <div className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 w-1 md:w-1.5 h-12 md:h-16 rounded-full bg-brand-brass shadow-lg" />
               </motion.div>
@@ -167,7 +167,7 @@ export default function HeroSection() {
                 className="absolute top-0 right-0 w-1/2 h-full bg-[#1c1a18] border-l border-[#2a2725] z-20 shadow-[-10px_0_30px_rgba(0,0,0,0.5)] flex items-center justify-start pl-2 will-change-transform"
               >
                 {/* Door Carving Panel */}
-                <div className="w-[85%] h-[95%] border border-brand-brass/20 rounded-tr-[120px] rounded-br-sm opacity-50" />
+                <div className="w-[85%] h-[95%] border border-brand-brass/20 rounded-tr-[80px] sm:rounded-tr-[100px] md:rounded-tr-[120px] rounded-br-sm opacity-50" />
                 {/* Door Handle */}
                 <div className="absolute left-2 md:left-3 top-1/2 -translate-y-1/2 w-1 md:w-1.5 h-12 md:h-16 rounded-full bg-brand-brass shadow-lg" />
               </motion.div>
