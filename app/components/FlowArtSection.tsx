@@ -135,7 +135,7 @@ export default function FlowArtSection({ onInquire }: FlowArtSectionProps) {
             className="font-sans"
           >
             {/* Header row */}
-            <div className="hidden md:flex items-center justify-between">
+            <div className="flex items-center justify-between">
               <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.25em]" style={{ color: item.accent }}>
                 {item.id} — The Collection
               </p>
@@ -144,7 +144,7 @@ export default function FlowArtSection({ onInquire }: FlowArtSectionProps) {
               </span>
             </div>
             
-            <hr className={`hidden md:block my-[1.5vw] border-none border-t ${item.divider}`} />
+            <hr className={`my-3 md:my-[1.5vw] border-none border-t ${item.divider}`} />
 
             {/* Asymmetrical content body */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center my-8 md:my-auto">
