@@ -37,7 +37,7 @@ export default function Footer() {
           </div>
 
           {/* Right side: Menus */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-10 md:gap-8 pt-4 md:pt-6">
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-8 pt-4 md:pt-6">
             
             {/* Col 1 */}
             <div className="flex flex-col gap-6">
@@ -72,20 +72,6 @@ export default function Footer() {
                   <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                   <span>@thehomedarbaar</span>
                 </a>
-              </div>
-            </div>
-
-            {/* Col 3 */}
-            <div className="flex flex-col gap-6">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-brand-brass" />
-                <h4 className="font-semibold text-brand-ivory text-sm uppercase tracking-widest">Info</h4>
-              </div>
-              <div className="flex flex-col gap-4 text-sm text-brand-ivory/50">
-                <span className="hover:text-brand-ivory transition-colors cursor-pointer underline-offset-4 decoration-transparent hover:decoration-brand-brass/40 hover:underline">Shipping Policy</span>
-                <span className="hover:text-brand-ivory transition-colors cursor-pointer underline-offset-4 decoration-transparent hover:decoration-brand-brass/40 hover:underline">Returns & Refunds</span>
-                <span className="hover:text-brand-ivory transition-colors cursor-pointer underline-offset-4 decoration-transparent hover:decoration-brand-brass/40 hover:underline">B2B / Wholesale</span>
-                <span className="hover:text-brand-ivory transition-colors cursor-pointer underline-offset-4 decoration-transparent hover:decoration-brand-brass/40 hover:underline">Privacy Policy</span>
               </div>
             </div>
 
