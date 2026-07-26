@@ -16,6 +16,8 @@ export default function ShowroomSection() {
   const [showroomEmail, setShowroomEmail] = useState("");
   const [showroomMsg, setShowroomMsg] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [errors, setErrors] = useState<{ name?: string; contact?: string; intent?: string }>({});
 
   const validateForm = () => {
@@ -58,24 +60,47 @@ export default function ShowroomSection() {
     return () => mm.revert();
   }, { scope: containerRef });
 
-  const handleShowroomSubmit = (e: React.FormEvent) => {
+  const handleShowroomSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
 
-    const subject = encodeURIComponent(`Showroom Viewing Request from ${showroomName}`);
-    const body = encodeURIComponent(
-      `Name: ${showroomName}\nContact Info: ${showroomEmail}\n\nMessage:\n${showroomMsg}`
-    );
-    window.location.href = `mailto:thehomedarbaar@gmail.com?subject=${subject}&body=${body}`;
+    setIsSubmitting(true);
+    setSubmitError(null);
 
-    setFormSubmitted(true);
-    setTimeout(() => {
-      setFormSubmitted(false);
-      setShowroomName("");
-      setShowroomEmail("");
-      setShowroomMsg("");
-      setErrors({});
-    }, 4000);
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/thehomedarbaar@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          Name: showroomName,
+          "Contact Info": showroomEmail,
+          Message: showroomMsg,
+          _subject: `New Showroom Request from ${showroomName}`,
+          _captcha: "false"
+        })
+      });
+
+      if (response.ok) {
+        setFormSubmitted(true);
+        setTimeout(() => {
+          setFormSubmitted(false);
+          setShowroomName("");
+          setShowroomEmail("");
+          setShowroomMsg("");
+          setErrors({});
+        }, 5000);
+      } else {
+        setSubmitError("Failed to submit request. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting showroom form:", error);
+      setSubmitError("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -224,13 +249,20 @@ export default function ShowroomSection() {
                   {errors.intent && <span className="text-brand-clay text-xs mt-2 block">{errors.intent}</span>}
                 </div>
 
+                {submitError && (
+                  <div className="text-brand-clay text-sm mt-4 text-center">
+                    {submitError}
+                  </div>
+                )}
+
                 <div className="pt-6">
                   <button 
                     type="submit"
-                    className="group w-full md:w-auto flex h-14 items-center justify-center gap-4 px-10 rounded-full bg-brand-charcoal text-brand-ivory font-bold uppercase tracking-[0.2em] text-[11px] transition-all duration-500 hover:bg-brand-brass hover:text-brand-charcoal active:scale-[0.98] cursor-pointer shadow-md"
+                    disabled={isSubmitting}
+                    className="group w-full md:w-auto flex h-14 items-center justify-center gap-4 px-10 rounded-full bg-brand-charcoal text-brand-ivory font-bold uppercase tracking-[0.2em] text-[11px] transition-all duration-500 hover:bg-brand-brass hover:text-brand-charcoal active:scale-[0.98] cursor-pointer shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <span>SUBMIT REQUEST</span>
-                    <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1.5 transition-transform" />
+                    <span>{isSubmitting ? "SUBMITTING..." : "SUBMIT REQUEST"}</span>
+                    {!isSubmitting && <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1.5 transition-transform" />}
                   </button>
                 </div>
               </form>
